@@ -65,7 +65,7 @@ export const products = [
     who: "The palm oil industry and other commercial buyers.",
     avail: "Confirmed on enquiry.",
     name: "Oil Palm",
-    img: "/images/palm.jpg",
+    img: "/images/palm.webp",
     text: "We are developing our palm production capacity with the long-term objective of supplying the palm oil industry and participating in palm-based processing opportunities.",
   },
   {
