@@ -23,15 +23,15 @@ export default function Journey() {
     return () => ctx.revert();
   }, []);
   return (
-    <section ref={root} aria-label="From farm to market" className="relative h-screen overflow-hidden text-bone" style={{ background: colors[0] }}>
-      <p className="absolute left-6 top-24 font-display text-lg text-bone/70 md:left-[8vw]">From the farm to the market</p>
-      <div className="absolute bottom-[18%] left-6 top-[30%] w-px bg-bone/20 md:left-[5vw]"><div className="j-bar h-full w-full origin-top scale-y-0 bg-palm" /></div>
-      {core.map((c, i) => (
-        <div key={c.title} className={`j-s${i} absolute inset-0 flex flex-col justify-center px-6 md:px-[8vw]`} style={i ? { visibility: "hidden" } : undefined}>
-          <h2 className="font-display text-[clamp(2.5rem,8vw,7rem)] font-extrabold leading-none tracking-tight">{c.title}</h2>
-          <p className="mt-6 max-w-xl text-xl text-bone/85">{c.text}</p>
-        </div>
-      ))}
-    </section>
-  );
+  <section ref={root} aria-label="From farm to market" className="relative h-screen overflow-hidden text-bone" style={{ background: colors[0] }}>
+    <p className="absolute left-10 top-24 font-display text-lg text-bone/70 md:left-[8vw]">From the farm to the market</p>
+    <div className="absolute bottom-[18%] left-4 top-[30%] w-1 bg-bone/25 md:left-[5vw]"><div className="j-bar h-full w-full origin-top scale-y-0 bg-palm" /></div>
+    {core.map((c, i) => (
+      <div key={c.title} className={`j-s${i} absolute inset-0 flex flex-col justify-center pl-10 pr-6 md:px-[8vw]`} style={i ? { visibility: "hidden" } : undefined}>
+        <h2 className="font-display text-[clamp(2.5rem,8vw,7rem)] font-extrabold leading-none tracking-tight">{c.title}</h2>
+        <p className="mt-6 max-w-xl text-xl text-bone/85">{c.text}</p>
+      </div>
+    ))}
+  </section>
+);
 }

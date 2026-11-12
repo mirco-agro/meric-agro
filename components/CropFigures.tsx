@@ -14,43 +14,71 @@ export default function CropFigures() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      const set = (el: HTMLElement, v: number) => { el.textContent = fmt(v) + (el.dataset.plus ? "+" : ""); };
-      const rows = gsap.utils.toArray<HTMLElement>("[data-row]");
-      const totalEl = root.current!.querySelector<HTMLElement>("[data-total]")!;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    ScrollTrigger.config({ ignoreMobileResize: true });
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-      set(totalEl, 0);
-      rows.forEach((r) => set(r.querySelector<HTMLElement>("[data-count]")!, 0));
-      gsap.set(".bar", { scaleX: 0, transformOrigin: "left center" });
-      gsap.set(".chip", { left: "0%", x: 0, xPercent: 0 });
+    const el = root.current!;
+    const ease = gsap.parseEase("power3.out");
+    const clamp = gsap.utils.clamp(0, 1);
+    const totalEl = el.querySelector<HTMLElement>("[data-total]")!;
+    const rows = Array.from(el.querySelectorAll<HTMLElement>("[data-row]")).map((row) => {
+      const num = row.querySelector<HTMLElement>("[data-count]")!;
+      return {
+        bar: row.querySelector<HTMLElement>(".bar")!,
+        chip: row.querySelector<HTMLElement>(".chip")!,
+        num,
+        count: +num.dataset.count!,
+        plus: !!num.dataset.plus,
+        shown: -1,
+        travel: 0,
+      };
+    });
 
-      ScrollTrigger.create({
-        trigger: root.current,
-        start: "top 70%",
-        once: true,
-        onEnter: () => {
-          const tl = gsap.timeline();
-          const t = { v: 0 };
-          tl.to(t, { v: total, duration: 2.4, ease: "power2.out", onUpdate: () => set(totalEl, t.v) }, 0);
-          rows.forEach((row, i) => {
-            const at = 0.2 + i * 0.25;
-            const n = row.querySelector<HTMLElement>("[data-count]")!;
-            const o = { v: 0 };
-            tl.to(row.querySelector(".bar"), { scaleX: 1, duration: 1.8, ease: "power3.out" }, at)
-              .to(row.querySelector(".chip"), { left: "100%", xPercent: -100, duration: 1.8, ease: "power3.out" }, at)
-              .to(o, { v: +n.dataset.count!, duration: 1.8, ease: "power3.out", onUpdate: () => set(n, o.v) }, at);
-          });
-        },
+    // lock sizes first, so changing digits can never reflow the page
+    totalEl.style.display = "inline-block";
+    totalEl.style.minWidth = `${totalEl.getBoundingClientRect().width}px`;
+    rows.forEach((r) => {
+      const w = r.chip.getBoundingClientRect().width;
+      r.chip.style.width = `${w}px`;
+      r.travel = r.chip.parentElement!.getBoundingClientRect().width - w;
+    });
+
+    let totalShown = -1;
+    const render = (p: number) => {
+      const t = Math.round(total * ease(clamp(p)));
+      if (t !== totalShown) { totalShown = t; totalEl.textContent = `${fmt(t)}+`; }
+      rows.forEach((r, i) => {
+        const rp = ease(clamp((p - i * 0.12) / 0.76));
+        r.bar.style.transform = `scaleX(${rp})`;
+        r.chip.style.transform = `translate3d(${-(1 - rp) * r.travel}px,0,0)`;
+        const v = Math.round(r.count * rp);
+        if (v !== r.shown) { r.shown = v; r.num.textContent = fmt(v) + (r.plus ? "+" : ""); }
       });
-    }, root);
-    return () => ctx.revert();
+    };
+
+    const finish = () => {
+      render(1);
+      totalEl.style.minWidth = "";
+      rows.forEach((r) => { r.bar.style.transform = ""; r.chip.style.transform = ""; r.chip.style.width = ""; });
+    };
+
+    render(0);
+    const st = ScrollTrigger.create({
+      trigger: el,
+      start: "top 75%",
+      once: true,
+      onEnter: () => {
+        const s = { p: 0 };
+        gsap.to(s, { p: 1, duration: 2.6, ease: "none", onUpdate: () => render(s.p), onComplete: finish });
+      },
+    });
+    return () => st.kill();
   }, []);
 
   return (
     <section ref={root} className={`${pad} bg-forest text-bone`}>
       <h2 className={h2}>
-        <span data-total data-plus="1">{fmt(total)}+</span> crops on record
+        <span data-total className="tabular-nums">{fmt(total)}+</span> crops on record
       </h2>
       <div className="mt-14 space-y-6">
         {figures.map((f) => (
@@ -58,9 +86,9 @@ export default function CropFigures() {
             <span className="font-display text-xl font-bold">{f.crop}</span>
             <div className="relative h-14" style={{ width: `${(f.count / max) * 100}%` }}>
               <span className="sr-only">{f.crop}: {f.label}</span>
-              <div aria-hidden className="bar absolute inset-0" style={{ background: f.color }} />
-              <div aria-hidden className="chip absolute inset-y-0 flex items-center" style={{ left: "100%", transform: "translateX(-100%)" }}>
-                <span className="mx-2 whitespace-nowrap bg-bone px-3 py-1.5 font-display font-bold text-black">
+              <div aria-hidden className="bar absolute inset-0 origin-left will-change-transform" style={{ background: f.color }} />
+              <div aria-hidden className="chip absolute inset-y-0 right-0 flex items-center will-change-transform">
+                <span className="mx-2 whitespace-nowrap bg-bone px-3 py-1.5 font-display font-bold tabular-nums text-black">
                   <span data-count={f.count} {...(f.label.includes("+") ? { "data-plus": "1" } : {})}>{fmt(f.count)}{f.label.includes("+") ? "+" : ""}</span>{" "}
                   {f.label.replace(/^[\d,+]+\s*/, "")}
                 </span>
