@@ -1,7 +1,7 @@
 import PartnerForm from "../../components/PartnerForm";
 import { site } from "../../lib/content";
 
-export const metadata = { title: "Contact | Meric Agro Processing" };
+export const metadata = { title: "Contact", description: "Call, WhatsApp or email Meric Agro Processing in Ibadan, Oyo State. Offices and farm addresses." };
 const link = "font-semibold underline decoration-palm decoration-2 underline-offset-4";
 
 export default function Contact() {

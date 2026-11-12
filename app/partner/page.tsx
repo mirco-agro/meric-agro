@@ -4,7 +4,7 @@ import { partner } from "../../lib/content";
 const pad = "px-6 py-24 md:px-[8vw] md:py-28";
 const h2 = "font-display text-4xl font-extrabold leading-tight tracking-tight md:text-6xl";
 
-export const metadata = { title: "Farmer Partnership Programme | Meric Agro Processing" };
+export const metadata = { title: "Farmer Partnership Programme", description: "Out-grower, produce supply, land development and cooperative partnerships with Meric Agro. Apply online." };
 
 export default function Partner() {
   return (

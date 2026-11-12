@@ -2,7 +2,7 @@ import PageHead from "../../components/PageHead";
 import { services } from "../../lib/content";
 import { pad, quote } from "../../lib/ui";
 
-export const metadata = { title: "Services | Meric Agro Processing" };
+export const metadata = { title: "Services", description: "Agricultural production, produce supply, sourcing, processing and partnerships for wholesalers, distributors and processors." };
 
 export default function Services() {
   return (

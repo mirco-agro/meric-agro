@@ -3,7 +3,7 @@ import PageHead from "../../components/PageHead";
 import { about, mission, vision, strategy, stages, story, goals, commitment, team } from "../../lib/content";
 import { pad, h2 } from "../../lib/ui";
 
-export const metadata = { title: "About | Meric Agro Processing" };
+export const metadata = { title: "About Us", description: "The story, mission and goals of Meric Agro Processing, an Ibadan agribusiness building a value chain from farm to market." };
 
 export default function About() {
   return (

@@ -3,7 +3,7 @@ import PageHead from "../../components/PageHead";
 import { products, upcoming } from "../../lib/content";
 import { pad, quote, Pin } from "../../lib/ui";
 
-export const metadata = { title: "Products | Meric Agro Processing" };
+export const metadata = { title: "Plantain, Cocoa and Oil Palm", description: "Fresh plantain, cocoa and oil palm grown in Oyo State, Nigeria. Request a quote for wholesale and commercial supply." };
 
 export default function Products() {
   return (
