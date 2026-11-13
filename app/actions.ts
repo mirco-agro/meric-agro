@@ -2,7 +2,7 @@
 import { z } from "zod";
 import { Resend } from "resend";
 import { google } from "googleapis";
-import { deliver } from "../lib/deliver";
+import { deliver, googleKey } from "../lib/deliver";
 import { steps } from "../lib/form";
 import { products } from "../lib/content";
 
@@ -34,7 +34,7 @@ export async function submitApplication(_prev: State, fd: FormData): Promise<Sta
   const addRow = async () => {
     const auth = new google.auth.JWT({
       email: process.env.GOOGLE_CLIENT_EMAIL,
-      key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      key: googleKey(),
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
     await google.sheets({ version: "v4", auth }).spreadsheets.values.append({
