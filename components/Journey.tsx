@@ -94,6 +94,21 @@ export default function Journey() {
         >
           <h3 className="font-display text-[clamp(2.3rem,8vw,7rem)] font-extrabold leading-[0.95] tracking-tight">{c.title}</h3>
           <p className="mt-4 max-w-xl text-base text-bone/85 md:mt-6 md:text-xl">{c.text}</p>
+          <dl className="mt-6 grid max-w-3xl gap-4 border-t border-bone/25 pt-5 text-base md:mt-8 md:grid-cols-2 md:gap-10">
+            <div>
+              <dt className="font-display text-sm text-bone/60">Where we are</dt>
+              <dd className="mt-1.5">
+                <span className="mr-2 inline-block bg-palm px-2.5 py-0.5 font-display text-sm font-semibold">{meta[i].status}</span>
+                {meta[i].line}
+              </dd>
+            </div>
+            <div>
+              <dt className="font-display text-sm text-bone/60">For {meta[i].audience}</dt>
+              <dd className="mt-1.5">
+                <a href={meta[i].href} className="inline-block border-2 border-bone px-5 py-2.5 font-display font-semibold hover:bg-bone hover:text-forest">{meta[i].cta}</a>
+              </dd>
+            </div>
+          </dl>
         </div>
       ))}
     </section>
