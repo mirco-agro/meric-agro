@@ -1,8 +1,7 @@
 "use client";
 import Script from "next/script";
 
-export default function TawkChat() {
-  const id = process.env.NEXT_TAWK_ID;
+export default function TawkChat({ id }: { id?: string }) {
   if (!id) return null;
   return (
     <Script id="tawk" strategy="lazyOnload">{`

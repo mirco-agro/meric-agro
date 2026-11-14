@@ -76,9 +76,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
         <Header />
-        <Smooth>{children}</Smooth>
+        <Smooth>
+          {children}
+        </Smooth>
+        <TawkChat id={process.env.TAWK_ID} />
         <Footer />
-        <TawkChat />
       </body>
     </html>
   );
