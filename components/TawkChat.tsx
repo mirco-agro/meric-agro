@@ -2,7 +2,7 @@
 import Script from "next/script";
 
 export default function TawkChat() {
-  const id = process.env.NEXT_PUBLIC_TAWK_ID;
+  const id = process.env.NEXT_TAWK_ID;
   if (!id) return null;
   return (
     <Script id="tawk" strategy="lazyOnload">{`
