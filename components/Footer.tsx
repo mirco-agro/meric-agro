@@ -1,5 +1,6 @@
 import { site } from "../lib/content";
-
+import { PhoneIcon, MailIcon } from "../lib/ui";
+import Socials from "./Socials";
 const links = [["About", "/about"], ["Products", "/products"], ["Services", "/services"], ["Gallery", "/#gallery"], ["Team", "/about#team"], ["Farmer Partnership", "/partner"], ["Contact", "/contact"]];
 
 export default function Footer() {
@@ -17,12 +18,9 @@ export default function Footer() {
         </div>
         <div className="grid gap-2 py-14 sm:grid-cols-2 sm:gap-2 md:grid-cols-[1.3fr_0.8fr_1fr_1.5fr]">
           <div>
-            <p className="font-display text-2xl font-bold">{site.name} Limited</p>
-            <p className="mt-3 max-w-xs text-bone/70">{site.tagline}</p>
-            <div className="flex flex-col gap-1">
-              <a href={site.instagram} target="_blank" rel="noreferrer" className="mt-5 inline-block font-display font-semibold underline decoration-palm decoration-2 underline-offset-4 hover:text-palm">Instagram: @mericagro</a>
-              <a href={site.tiktok} target="_blank" rel="noreferrer" className="mt-5 inline-block font-display font-semibold underline decoration-palm decoration-2 underline-offset-4 hover:text-palm">Tiktok: @mericagro</a>
-            </div>
+              <p className="font-display text-2xl font-bold">{site.name} Limited</p>
+              <p className="mt-3 max-w-xs text-bone/70">{site.tagline}</p>
+              <div className="mt-6"><Socials /></div>
           </div>
           <nav aria-label="Footer">
             <h3 className="font-display font-bold text-palm">Explore</h3>
@@ -31,9 +29,8 @@ export default function Footer() {
           <div>
             <h3 className="font-display font-bold text-palm">Reach us</h3>
             <ul className="mt-4 space-y-2">
-              <li><a href={`tel:${site.phone}`} className="hover:text-palm">+234 907 885 7329</a></li>
-              <li><a href={`mailto:${site.emailOne}`} className="break-all hover:text-palm">{site.emailOne}</a></li>
-              <li><a href={`mailto:${site.emailTwo}`} className="break-all hover:text-palm">{site.emailTwo}</a></li>
+              <li><a href={`tel:${site.phone}`} className="inline-flex items-center gap-2 hover:text-palm"><PhoneIcon />+234 907 885 7329</a></li>
+              <li><a href={`mailto:${site.emailOne}`} className="inline-flex items-start gap-2 break-all hover:text-palm"><span className="mt-0.5"><MailIcon /></span>{site.emailOne}</a></li>
               <li className="text-bone/70">Open {site.hours}</li>
             </ul>
           </div>

@@ -34,7 +34,7 @@ export default function Header() {
         <a href="/" className="flex items-center gap-3 font-display font-bold">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/logo.png" alt="" className="h-9 w-auto" />
-          Meric Agro
+          Meric Agro Processing
         </a>
 
         <nav aria-label="Main" className="hidden gap-8 font-display md:flex">
@@ -79,7 +79,6 @@ export default function Header() {
             <p className="text-bone/70 flex flex-col gap-0">
               <a href={`tel:${site.phone}`}>+234 907 885 7329</a>
               <a href={`mailto:${site.emailOne}`}>{site.emailOne}</a>
-              <a href={`mailto:${site.emailTwo}`}>{site.emailTwo}</a>
             </p>
           </div>
         </nav>

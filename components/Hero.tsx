@@ -41,7 +41,7 @@ export default function Hero() {
           <span className="block overflow-hidden pb-2"><span className="h-line inline-block">Growing value.</span></span>
           <span className="block overflow-hidden pb-2 text-palm"><span className="h-line inline-block">Harvesting the future.</span></span>
         </h1>
-        <p className="h-sub mt-5 max-w-xl text-lg md:mt-8 md:text-xl text-bone/90">Cocoa, plantain and oil palm, grown on our farms in Onipe and Onigambari, Oyo State.</p>
+        <p className="h-sub mt-5 max-w-xl text-lg md:mt-8 md:text-xl text-bone/90">Oil palm, Cocoa and plantain, grown on our farms in Onipe and Onigambari Ibadan, Oyo State.</p>
         <div className="h-sub mt-6 flex flex-wrap gap-3 font-display md:mt-8 md:gap-4">
           <a href="/products" className="bg-palm px-6 py-3 font-semibold text-bone hover:bg-bone hover:text-forest md:px-7">Request a Quote</a>
           <a href="/contact" className="border-2 border-bone px-6 py-3 font-semibold hover:bg-bone hover:text-forest md:px-7">Discuss a Partnership</a>

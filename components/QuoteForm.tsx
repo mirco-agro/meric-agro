@@ -21,7 +21,7 @@ export default function QuoteForm({ slug, product }: { slug: string; product: st
         <label>Email *<input name="email" type="email" required className={f} /></label>
         <label>Type of buyer<select name="type" className={f}><option value="">Choose</option>{types.map((t) => <option key={t}>{t}</option>)}</select></label>
         <label>Delivery location *<input name="location" required className={f} /></label>
-        <label>Quantity needed *<input name="quantity" required placeholder="For example 500 kg or 2 truckloads" className={f} /></label>
+        <label>Quantity needed *<input name="quantity" required placeholder="For example 500 kg/tons or 2 truckloads" className={f} /></label>
         <label>How often?<select name="frequency" className={f}><option value="">Choose</option>{freq.map((t) => <option key={t}>{t}</option>)}</select></label>
       </div>
       <label>Needed by (date or period)<input name="needed" className={f} /></label>

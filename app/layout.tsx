@@ -4,6 +4,7 @@ import Smooth from "../components/Smooth";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { site } from "../lib/content";
+import TawkChat from "../components/TawkChat";
 import "./globals.css";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" });
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <Smooth>{children}</Smooth>
         <Footer />
+        <TawkChat />
       </body>
     </html>
   );

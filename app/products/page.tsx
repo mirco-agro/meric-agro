@@ -10,7 +10,7 @@ export default function Products() {
     <main>
       <PageHead
         title={<>What we <span className="text-palm">grow</span></>}
-        intro="Plantain, cocoa and oil palm from our farms in Oyo State, Nigeria. Prices and quantities are discussed on enquiry."
+        intro="Oil palm, cocoa and plantain from our farms in Onipe and Onigambari, Ibadan, Oyo State, Nigeria. Prices and quantities are discussed on enquiry."
       />
       <section className={pad}>
         <div className="space-y-24">

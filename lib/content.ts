@@ -44,7 +44,7 @@ export const site = {
 
 export const about = [
   "Meric Agro Processing Limited is a Nigerian agribusiness focused on sustainable agricultural production, sourcing, processing and the development of value-added agricultural products.",
-  "Based in Ibadan, Oyo State, Nigeria. We cultivate cocoa, plantain and oil palm, with a commitment to building a reliable agricultural value chain that connects farm production to local and international markets.",
+  "Based in Ibadan, Oyo State, Nigeria. We cultivate oil palm, cocoa and plantain, with a commitment to building a reliable agricultural value chain that connects farm production to local and international markets.",
   "At Meric Agro, we are building for the future: one farm, one partnership and one harvest at a time.",
 ];
 export const mission = "To cultivate, source and develop quality agricultural products through sustainable farming practices, responsible partnerships and value-added processing, while contributing to food security, economic growth and the development of Nigeria’s agricultural sector.";
@@ -91,9 +91,9 @@ export const products = [
 ];
 
 export const upcoming = [
-  { name: "Plantain Chips", text: "A proposed branded snack for retail, wholesale and distribution markets in Nigeria and South Africa." },
-  { name: "Cocoa Powder and Chocolate", text: "Long-term plans to process cocoa into cocoa powder, chocolate and other value-added products." },
   { name: "Palm Oil and Palm Products", text: "Palm processing capabilities to turn harvested palm fruits into palm oil and other palm products." },
+  { name: "Cocoa Powder and Chocolate", text: "Long-term plans to process cocoa into cocoa powder, chocolate and other value-added products." },
+  { name: "Plantain Chips", text: "A proposed branded snack for retail, wholesale and distribution markets in Nigeria and South Africa." },
 ];
 
 export const services = [
@@ -105,9 +105,9 @@ export const services = [
 ];
 
 export const figures = [
-  { crop: "Plantain", count: 5000, label: "5,000+ stands", color: "#a8b83a" },
-  { crop: "Cocoa", count: 4000, label: "4,000 stands", color: "#6b3a22" },
-  { crop: "Oil palm", count: 4000, label: "4,000 trees", color: "#e5501b" },
+  { crop: "Plantain", count: 15000, label: "15,000+ stands", color: "#a8b83a" },
+  { crop: "Oil palm", count: 10150, label: "10,150 trees", color: "#e5501b" },
+  { crop: "Cocoa", count: 9500, label: "9,500 stands", color: "#6b3a22" }
 ];
 export const figuresNote = "Our crop figures reflect recorded farm populations and are subject to ongoing field verification. They should not be read as annual production or harvest volumes.";
 
@@ -115,7 +115,7 @@ export const team = [
   { name: "Richie Adetoro", role: "CEO / Managing Director", img: "richie" },
   { name: "Habeeb Giwa", role: "Director of Business Development and Strategic Partnerships", img: "habeeb" },
   { name: "Oluwabanke Marvellous", role: "Farm Operations and Cost Control Officer", img: "oluwabanke" },
-  { name: "Tunde Ajibola", role: "Farm Manager", img: "tunde" },
+  { name: "Tunde Ajibola", role: "Lead Farm Consultant", img: "tunde" },
 ];
 
 export const partner = {
