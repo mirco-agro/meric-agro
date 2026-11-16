@@ -1,10 +1,12 @@
 "use client";
 import Script from "next/script";
+import { preconnect } from "react-dom";
 
 export default function TawkChat({ id }: { id?: string }) {
   if (!id) return null;
+  preconnect("https://embed.tawk.to");
   return (
-    <Script id="tawk" strategy="lazyOnload">{`
+    <Script id="tawk" strategy="afterInteractive">{`
       var Tawk_API = Tawk_API || {};
       (function () {
         var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];

@@ -148,3 +148,5 @@ export const partner = {
   ],
   note: "Specific support, purchasing commitments and commercial benefits will be agreed individually for each partnership.",
 };
+
+export const farmVideo = { id: "AkbYRBlnlLk?si=-2d0b7-hHnpQoXh6", title: "Meric Agro farm from above" };

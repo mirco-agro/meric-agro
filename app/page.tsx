@@ -2,9 +2,10 @@ import Image from "next/image";
 import Hero from "../components/Hero";
 import Journey from "../components/Journey";
 import Gallery from "../components/Gallery";
-import { about, products, figures, figuresNote } from "../lib/content";
+import { about, products, figures, figuresNote, farmVideo } from "../lib/content";
 import { pad, h2, quote, Pin } from "../lib/ui";
 import CropFigures from "../components/CropFigures";
+import YouTubeEmbed from "../components/YouTubeEmbed";
 
 export default function Home() {
   const max = Math.max(...figures.map((f) => f.count));
@@ -49,6 +50,10 @@ export default function Home() {
 
      <CropFigures />
 
+    <section className={pad}>
+      <h2 className={h2}>See our farm from above</h2>
+      <div className="mt-10 max-w-5xl"><YouTubeEmbed id={farmVideo.id} title={farmVideo.title} /></div>
+    </section>
       <section id="gallery" className={pad}>
         <h2 className={h2}>Life on the farm</h2>
         <div className="mt-14"><Gallery /></div>

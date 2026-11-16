@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { getImageProps } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HeroMedia from "./HeroMedia";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -27,12 +28,7 @@ export default function Hero() {
   return (
     <section ref={ref} className="relative flex min-h-[100svh] items-end overflow-hidden bg-forest text-bone">
       <div className="h-bg absolute inset-0 md:-top-[10%] md:h-[120%]">
-        <picture>
-          <source media="(min-width: 768px)" srcSet={desktop} />
-          <source media="(max-width: 767px)" srcSet={mobile} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img {...img} className="object-cover object-[50%_40%] md:object-center" />
-        </picture>
+        <HeroMedia />
         <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/35 to-transparent md:via-forest/50 md:to-forest/10" />
       </div>
 
