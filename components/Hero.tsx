@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { getImageProps } from "next/image";
+import Image, { getImageProps } from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroMedia from "./HeroMedia";
@@ -28,7 +28,8 @@ export default function Hero() {
   return (
     <section ref={ref} className="relative flex min-h-[100svh] items-end overflow-hidden bg-forest text-bone">
       <div className="h-bg absolute inset-0 md:-top-[10%] md:h-[120%]">
-        <HeroMedia />
+        <Image src="/images/hero.jpg" alt="Meric Agro farmland at sunset" fill priority sizes="100vw" className="object-cover" />
+        {/* <HeroMedia /> */}
         <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/35 to-transparent md:via-forest/50 md:to-forest/10" />
       </div>
 

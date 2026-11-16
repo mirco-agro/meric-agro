@@ -50,10 +50,11 @@ export default function Home() {
 
      <CropFigures />
 
-    <section className={pad}>
+    {/* <section className={pad}>
       <h2 className={h2}>See our farm from above</h2>
       <div className="mt-10 max-w-5xl"><YouTubeEmbed id={farmVideo.id} title={farmVideo.title} /></div>
-    </section>
+    </section> */}
+    
       <section id="gallery" className={pad}>
         <h2 className={h2}>Life on the farm</h2>
         <div className="mt-14"><Gallery /></div>
