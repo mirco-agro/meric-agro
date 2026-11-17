@@ -2,7 +2,14 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-type Item = { src?: string; video?: string; cap: string; w: number; h: number };
+type Item = {
+  src?: string;
+  video?: string;
+  cap: string;
+  w: number;
+  h: number;
+  isShort?: boolean;
+};
 
 const photos: Item[] = [
   // drone photos (put the files in public/images/drone/)
@@ -12,8 +19,8 @@ const photos: Item[] = [
   { src: "/images/drone/stills/farm-aerial-03.jpg", cap: "Team members walking the rows", w: 1800, h: 1013 },
   { src: "plantain-field-01", cap: "Plantain farm", w: 1200, h: 1600 },
   { src: "plantain-field-02", cap: "Plantain in the field", w: 1200, h: 1600 },
-  { src: "plantain-field-03", cap: "Plantain with flower stalk", w: 1200, h: 1600 },
   { src: "plantain-harvest-01", cap: "Harvested plantain bunch", w: 1200, h: 1600 },
+  { video: "hmqZdnbby1M", cap: "Plantain farm", w: 1280, h: 720, isShort: true },
   { src: "plantain-harvest-02", cap: "Harvested plantain bunches", w: 1200, h: 1600 },
   { src: "plantain-young-01", cap: "Young plantain", w: 1600, h: 1200 },
   { src: "plantain-young-02", cap: "Young plantain shoot", w: 1200, h: 1600 },
@@ -51,7 +58,7 @@ export default function Gallery() {
           <li key={p.video ?? p.src} className="mb-4 break-inside-avoid">
             <button onClick={() => setOpen(i)} aria-label={`${p.video ? "Play video" : "Open photo"}: ${p.cap}`} className="group relative block w-full overflow-hidden bg-forest">
               {p.video ? (
-                <div className="relative aspect-video">
+                <div className={`relative ${p.isShort ? "aspect-[9/16]" : "aspect-video"}`}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={thumb(p.video)} alt={p.cap} loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none"
                     onError={(e) => { const t = e.currentTarget; if (!t.dataset.fb) { t.dataset.fb = "1"; t.src = `https://i.ytimg.com/vi/${p.video}/hqdefault.jpg`; } }} />
