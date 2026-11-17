@@ -102,12 +102,12 @@ export default function Journey() {
                 {meta[i].line}
               </dd>
             </div>
-            <div>
+            {/* <div>
               <dt className="font-display text-sm text-bone/60">For {meta[i].audience}</dt>
               <dd className="mt-1.5">
                 <a href={meta[i].href} className="inline-block border-2 border-bone px-5 py-2.5 font-display font-semibold hover:bg-bone hover:text-forest">{meta[i].cta}</a>
               </dd>
-            </div>
+            </div> */}
           </dl>
         </div>
       ))}

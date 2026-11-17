@@ -75,7 +75,7 @@ export const products = [
     who: "Cocoa traders, aggregators, processors and other commercial buyers.",
     avail: "Confirmed on enquiry.",
     name: "Cocoa",
-    img: "/images/cocoa.jpg",
+    img: "/images/cocoa.jpeg",
     text: "Our cocoa activities are focused on developing quality agricultural produce for potential supply to cocoa traders, aggregators, processors and other commercial buyers.",
   },
   {

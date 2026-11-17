@@ -12,14 +12,17 @@ export const bios: Record<string, string[]> = {
     "Richie’s business philosophy centres on strategic investment, disciplined management, sustainable growth and building businesses with long-term commercial value. He is particularly interested in opportunities that connect African resources, enterprise development and international markets.",
     "His long-term ambition is to build and lead businesses that create lasting value, establish meaningful partnerships and contribute to economic development.",
   ],
-  oluwabanke: [], // waiting for bio
+  oluwabanke: [
+    "Oluwabanke joined Meric Agro Processing in February 2026 as Farm Operations & Cost Control Officer. She plays a key role in supporting the company’s farm operations through financial monitoring, cost control and operational reporting.",
+    "Her responsibilities include monitoring farm expenses and budgets, tracking production and yield records, analysing operational costs and preparing reports to support management decisions. She also contributes to identifying operational inefficiencies, improving financial accountability and ensuring effective resource management across the company’s farm operations.",
+    "Through her attention to detail and analytical approach, Oluwabanke supports the company’s commitment to efficient agricultural operations, cost management and sustainable business growth."],
   tunde: [],      // waiting for bio
 };
 
 // The client's seven goals, grouped into four outcomes. Card text is his wording.
 export const outcomes = [
-  { title: "Stronger production", img: "/images/plantain.jpg", tag: "Live today", goals: ["Expand and improve our agricultural production capacity.", "Build quality assurance and traceability systems across our operations."] },
-  { title: "Reliable supply and partnerships", img: "/images/cocoa.jpg", tag: "Growing", goals: ["Develop reliable agricultural sourcing and supply partnerships.", "Develop strong relationships with local and international buyers."] },
-  { title: "Value added at home", img: "", tag: "In development", goals: ["Establish processing facilities for selected agricultural products."] },
-  { title: "Opportunity for communities and markets", img: "/images/gallery/plantain-harvest-01.jpg", tag: "Building", goals: ["Create employment and economic opportunities within agricultural communities.", "Position Nigerian agricultural products for greater participation in regional and international markets."] },
+  { title: "Stronger production", img: "/images/drone/stills/production.jpg", tag: "Live today", goals: ["Expand and improve our agricultural production capacity.", "Build quality assurance and traceability systems across our operations."] },
+  { title: "Reliable supply and partnerships", img: "/images/drone/stills/partnership.png", tag: "Growing", goals: ["Develop reliable agricultural sourcing and supply partnerships.", "Develop strong relationships with local and international buyers."] },
+  { title: "Value added at home", img: "/images/gallery/plantain-harvest-01.jpg", tag: "In development", goals: ["Establish processing facilities for selected agricultural products."] },
+  { title: "Opportunity for communities and markets", img: "/images/drone/stills/community.jpg", tag: "Building", goals: ["Create employment and economic opportunities within agricultural communities.", "Position Nigerian agricultural products for greater participation in regional and international markets."] },
 ];

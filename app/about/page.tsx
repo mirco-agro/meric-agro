@@ -3,7 +3,8 @@ import AboutHero from "../../components/AboutHero";
 import AboutNav from "../../components/AboutNav";
 import CommitmentBand from "../../components/CommitmentBand";
 import LearnMore from "../../components/LearnMore";
-import { about, core, stages } from "../../lib/content";
+import YouTubeEmbed from "../../components/YouTubeEmbed";
+import { about, core, stages, farmVideo } from "../../lib/content";
 import { pad } from "../../lib/ui";
 
 export const metadata = { title: "About Us", description: "Meric Agro Processing is an Ibadan agribusiness building a value chain from farm to market: production, sourcing, processing and distribution." };
@@ -18,7 +19,7 @@ const cards = [
 export default function About() {
   return (
     <main>
-      <AboutHero title="About Meric Agro" intro={about[0]} img="/images/hero.jpg" />
+      <AboutHero title="About Meric Agro" intro={about[0]} img="/images/drone/stills/farm-about.jpg" />
       <AboutNav />
 
       <section className={pad}>
@@ -27,8 +28,18 @@ export default function About() {
           <p className="font-display text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">We believe agriculture is more than cultivation.</p>
           <p className="mt-6 max-w-2xl text-xl">It is an opportunity to create economic value, support food security, generate employment and develop sustainable businesses around the resources our land provides.</p>
         </div>
+      </section>
 
-        <h2 className="mt-28 font-display text-4xl font-extrabold tracking-tight md:text-6xl">Every step of the value chain</h2>
+      <section className="px-6 pb-24 md:px-[8vw] md:pb-32">
+        <div className="text-center">
+          <h2 className="mx-auto max-w-3xl font-display text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">See our farm from above</h2>
+          <p className="mx-auto mt-5 max-w-2xl text-xl">A drone tour of our plantain and cocoa fields in Ibadan, Oyo State.</p>
+        </div>
+        <div className="mx-auto mt-10 max-w-5xl"><YouTubeEmbed id={farmVideo.id} title={farmVideo.title} /></div>
+      </section>
+
+      <section className="px-6 pb-24 md:px-[8vw] md:pb-32">
+        <h2 className="font-display text-4xl font-extrabold tracking-tight md:text-6xl">Every step of the value chain</h2>
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {core.map((c, i) => (
             <li key={c.title} className="flex flex-col bg-white">

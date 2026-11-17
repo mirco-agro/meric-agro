@@ -12,9 +12,8 @@ export const metadata = { title: "Our Purpose", description: "Our mission, visio
 export default function Purpose() {
   return (
     <main>
-      <AboutHero title="Our Purpose" intro="Building a Nigerian agribusiness that creates value from cultivation through to the finished product." img="/images/gallery/plantain-field-03.jpg" />
+      <AboutHero title="Our Purpose" intro="Building a Nigerian agribusiness that creates value from cultivation through to the finished product." img="/images/drone/stills/farm-purpose.jpg" />
       <AboutNav />
-
       <section className={`${pad} grid gap-6 md:grid-cols-2`}>
         <div className="bg-forest p-8 text-bone md:p-12"><h2 className="font-display text-3xl font-extrabold">Our mission</h2><p className="mt-5 text-xl leading-relaxed text-bone/90">{mission}</p></div>
         <div className="bg-leaf/15 p-8 md:p-12"><h2 className="font-display text-3xl font-extrabold">Our vision</h2><p className="mt-5 text-xl leading-relaxed">{vision}</p></div>
@@ -40,7 +39,7 @@ export default function Purpose() {
 
       <section className="grid items-center gap-10 bg-leaf/15 px-6 py-24 md:grid-cols-2 md:gap-16 md:px-[8vw]">
         <div className="relative aspect-[4/3] overflow-hidden bg-forest">
-          <Image src="/images/gallery/plantain-young-01.jpg" alt="" fill sizes="(min-width:768px) 45vw, 100vw" className="object-cover" />
+          <Image src="/images/drone/stills/farmers.jpg" alt="" fill sizes="(min-width:768px) 45vw, 100vw" className="object-cover" />
         </div>
         <div>
           <h2 className="font-display text-3xl font-extrabold md:text-5xl">Putting our purpose into practice</h2>
