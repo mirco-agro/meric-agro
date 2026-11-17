@@ -9,7 +9,7 @@ export const metadata = { title: "Our Story", description: "How Meric Agro Proce
 export default function Story() {
   return (
     <main>
-      <AboutHero title="Our Story" intro="From an agricultural investment to an integrated agribusiness vision." img="/images/gallery/plantain-harvest-02.jpg" />
+      <AboutHero title="Our Story" intro="From an agricultural investment to an integrated agribusiness vision." img="/images/drone/stills/story.jpg" />
       <AboutNav />
       <section className={`${pad} grid gap-12 md:grid-cols-[0.8fr_1.4fr]`}>
         <h2 className="font-display text-4xl font-extrabold md:sticky md:top-44 md:self-start md:text-5xl">How we got here</h2>

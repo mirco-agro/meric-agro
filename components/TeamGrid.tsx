@@ -20,21 +20,47 @@ export default function TeamGrid() {
 
   return (
     <>
+      
       <ul className="mx-auto grid max-w-4xl grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-4">
         {team.map((p, i) => (
-          <li key={p.name}>
+          <li key={p.name} className="flex h-full flex-col">
             <div className="relative aspect-[4/5] overflow-hidden bg-forest">
-              <span aria-hidden className="absolute inset-0 flex items-center justify-center font-display text-5xl font-extrabold text-bone/20">{initials(p.name)}</span>
-              <Image src={`/images/team/${p.img}.jpg`} alt={p.name} fill sizes="(min-width:768px) 220px, 45vw" className="object-cover" />
+              <span
+                aria-hidden
+                className="absolute inset-0 flex items-center justify-center font-display text-5xl font-extrabold text-bone/20"
+              >
+                {initials(p.name)}
+              </span>
+              <Image
+                src={`/images/team/${p.img}.jpg`}
+                alt={p.name}
+                fill
+                sizes="(min-width:768px) 220px, 45vw"
+                className="object-cover"
+              />
             </div>
-            <h3 className="mt-3 font-display text-lg font-bold leading-tight">{p.name}</h3>
-            <p className="mt-1 text-sm leading-snug text-soil/75">{p.role}</p>
+
+            <h3 className="mt-3 font-display text-lg font-bold leading-tight">
+              {p.name}
+            </h3>
+
+            <p className="mt-1 text-sm leading-snug text-soil/75">
+              {p.role}
+            </p>
+
             {bios[p.img]?.length > 0 && (
-              <button type="button" onClick={() => setOpen(i)} className="mt-2 font-display text-sm font-semibold underline decoration-palm decoration-2 underline-offset-4 hover:text-palm">View bio</button>
+              <button
+                type="button"
+                onClick={() => setOpen(i)}
+                className="mt-auto pt-3 self-start font-display text-sm font-semibold underline decoration-palm decoration-2 underline-offset-4 hover:text-palm"
+              >
+                View bio
+              </button>
             )}
           </li>
         ))}
       </ul>
+
 
       {m && (
         <div role="dialog" aria-modal="true" aria-label={`${m.name}, biography`} onClick={() => setOpen(null)}

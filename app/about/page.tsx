@@ -10,10 +10,10 @@ import { pad } from "../../lib/ui";
 export const metadata = { title: "About Us", description: "Meric Agro Processing is an Ibadan agribusiness building a value chain from farm to market: production, sourcing, processing and distribution." };
 
 const cards = [
-  { img: "/images/gallery/plantain-field-02.jpg", tag: "Live today" },
-  { img: "/images/gallery/plantain-cocoa-01.jpg", tag: "Growing" },
-  { img: "", tag: "In development" },
-  { img: "", tag: "Building" },
+  { img: "/images/drone/stills/plantains.jpg", tag: "Live today" },
+  { img: "/images/gallery/plantain-field-01.jpg", tag: "Growing" },
+  { img: "/images/palm.webp", tag: "In development" },
+  { img: "/images/plantain.jpg", tag: "Building" },
 ];
 
 export default function About() {
