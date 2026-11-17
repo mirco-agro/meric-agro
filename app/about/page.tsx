@@ -33,7 +33,7 @@ export default function About() {
       <section className="px-6 pb-24 md:px-[8vw] md:pb-32">
         <div className="text-center">
           <h2 className="mx-auto max-w-3xl font-display text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">See our farm from above</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-xl">A drone tour of our plantain and cocoa fields in Ibadan, Oyo State.</p>
+          <p className="mx-auto mt-5 max-w-2xl text-xl">A drone tour of our plantain and cocoa fields in Onipe Ibadan, Oyo State.</p>
         </div>
         <div className="mx-auto mt-10 max-w-5xl"><YouTubeEmbed id={farmVideo.id} title={farmVideo.title} /></div>
       </section>
