@@ -7,10 +7,10 @@ import { core } from "../lib/content";
 const colors = ["#0b2b1c", "#3a2216", "#5a2a12", "#12303a"];
 
 const meta = [
-  { status: "Live today", line: "31,000+ oil palm, cocoa and plantain crops on record across our farms in Onipe and Onigambari, Ibadan, Oyo State.", audience: "buyers", cta: "Request a Quote", href: "/products" },
-  { status: "Growing", line: "Building relationships with farmers and suppliers beyond our own farms.", audience: "farmers and landowners", cta: "Join the partnership programme", href: "/partner" },
-  { status: "In development", line: "Plans for palm oil, cocoa and plantain products. Not yet established production lines.", audience: "processors and brands", cta: "Discuss a partnership", href: "/contact" },
-  { status: "Building", line: "Supply relationships with wholesalers, distributors, retailers and food manufacturers.", audience: "wholesalers and distributors", cta: "Talk to us", href: "/contact" },
+  { status: "Live today", line: "31,000+ oil palm, cocoa and plantain crops on record across our farms in Onipe and Onigambari, Ibadan, Oyo State." },
+  { status: "Growing", line: "Building relationships with farmers and suppliers beyond our own farms." },
+  { status: "In development", line: "Plans for palm oil, cocoa and plantain products. Not yet established production lines." },
+  { status: "Building", line: "Supply relationships with wholesalers, distributors, retailers and food manufacturers." },
 ];
 
 export default function Journey() {
@@ -54,7 +54,6 @@ export default function Journey() {
           .to(`.j-s${i - 1}`, { autoAlpha: 0, y: -40, duration: 0.25, ease: "power1.in" }, i - 0.3)
           .fromTo(`.j-s${i}`, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" }, i - 0.05);
       }
-      tl.to({}, { duration: 1 - (n - 1 + 0) + 1 - 1 }, n); // no-op spacer, keeps total length = n
     }, root);
 
     return () => ctx.revert();
@@ -89,26 +88,24 @@ export default function Journey() {
         <div
           key={c.title}
           data-stage
-          className={`j-s${i} absolute inset-0 flex flex-col justify-center pb-6 pl-10 pr-6 pt-32 md:px-[8vw] md:pt-28 group-data-[static=true]:relative group-data-[static=true]:inset-auto group-data-[static=true]:py-12`}
+          className={`j-s${i} absolute inset-0 flex items-center pb-8 pl-10 pr-6 pt-36 md:px-[8vw] md:pt-32 group-data-[static=true]:relative group-data-[static=true]:inset-auto group-data-[static=true]:py-12`}
           style={i ? { visibility: "hidden" } : undefined}
         >
-          <h3 className="font-display text-[clamp(2.3rem,8vw,7rem)] font-extrabold leading-[0.95] tracking-tight">{c.title}</h3>
-          <p className="mt-4 max-w-xl text-base text-bone/85 md:mt-6 md:text-xl">{c.text}</p>
-          <dl className="mt-6 grid max-w-3xl gap-4 border-t border-bone/25 pt-5 text-base md:mt-8 md:grid-cols-2 md:gap-10">
+          <div className="grid w-full gap-8 md:grid-cols-[1.35fr_1fr] md:items-end md:gap-14">
             <div>
-              <dt className="font-display text-sm text-bone/60">Where we are</dt>
-              <dd className="mt-1.5">
-                <span className="mr-2 inline-block bg-palm px-2.5 py-0.5 font-display text-sm font-semibold">{meta[i].status}</span>
-                {meta[i].line}
-              </dd>
+              <h3 className="font-display text-[clamp(2.3rem,7vw,6.5rem)] font-extrabold leading-[0.95] tracking-tight">{c.title}</h3>
+              <p className="mt-5 max-w-xl text-base text-bone/85 md:mt-7 md:text-xl">{c.text}</p>
             </div>
-            {/* <div>
-              <dt className="font-display text-sm text-bone/60">For {meta[i].audience}</dt>
-              <dd className="mt-1.5">
-                <a href={meta[i].href} className="inline-block border-2 border-bone px-5 py-2.5 font-display font-semibold hover:bg-bone hover:text-forest">{meta[i].cta}</a>
-              </dd>
-            </div> */}
-          </dl>
+
+            <aside className="border border-bone/25 bg-black/20 p-5 md:p-7">
+              <p className="flex items-center justify-between font-display text-sm text-bone/65">
+                <span>Where we are</span>
+                <span aria-hidden>Step {String(i + 1).padStart(2, "0")}</span>
+              </p>
+              <span className="mt-4 inline-block bg-palm px-3 py-1 font-display text-sm font-semibold">{meta[i].status}</span>
+              <p className="mt-4 text-base leading-relaxed md:text-lg">{meta[i].line}</p>
+            </aside>
+          </div>
         </div>
       ))}
     </section>
