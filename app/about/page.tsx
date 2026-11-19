@@ -19,7 +19,7 @@ const cards = [
 export default function About() {
   return (
     <main>
-      <AboutHero title=`About Meric Agro <span className="text-palm">Processing</span>` intro={about[0]} img="/images/drone/stills/farm-about.jpg" />
+      <AboutHero title="About Meric Agro" intro={about[0]} img="/images/drone/stills/farm-about.jpg" />
       <AboutNav />
 
       <section className={pad}>
