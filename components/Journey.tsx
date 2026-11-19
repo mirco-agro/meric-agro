@@ -7,7 +7,7 @@ import { core } from "../lib/content";
 const colors = ["#0b2b1c", "#3a2216", "#5a2a12", "#12303a"];
 
 const meta = [
-  { status: "Live today", line: "31,000+ oil palm, cocoa and plantain crops on record across our farms in Onipe and Onigambari, Ibadan, Oyo State." },
+  { status: "Live today", line: "34,650+ oil palm, cocoa and plantain crops on record across our farms in Onipe and Onigambari, Ibadan, Oyo State." },
   { status: "Growing", line: "Building relationships with farmers and suppliers beyond our own farms." },
   { status: "In development", line: "Plans for palm oil, cocoa and plantain products. Not yet established production lines." },
   { status: "Building", line: "Supply relationships with wholesalers, distributors, retailers and food manufacturers." },
