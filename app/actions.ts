@@ -2,7 +2,7 @@
 import { z } from "zod";
 import { Resend } from "resend";
 import { google } from "googleapis";
-import { deliver, confirm, googleKey } from "../lib/deliver";
+import { deliver, confirm, googleKey, mailFrom } from "../lib/deliver";
 import { steps } from "../lib/form";
 import { products } from "../lib/content";
 
@@ -26,7 +26,7 @@ export async function submitApplication(_prev: State, fd: FormData): Promise<Sta
 
   const sendMail = async () => {
     const res = await new Resend(process.env.RESEND_API_KEY).emails.send({
-      from: process.env.MAIL_FROM!, to: process.env.NOTIFY_TO!, replyTo: d.email,
+      from: mailFrom(), to: process.env.NOTIFY_TO!, replyTo: d.email,
       subject: `New enquiry: ${d.type}`, text,
     });
     if (res.error) throw new Error(res.error.message);
