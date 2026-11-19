@@ -6,10 +6,11 @@ export const googleKey = () =>
 
 export const mailFrom = () =>
   (process.env.MAIL_FROM ?? "").trim().replace(/^["']|["']$/g, "") || "Meric Agro <enquiries@meric-agro.com>";
-export async function deliver(subject: string, text: string, replyTo: string, row: string[], range: string, to?: string) {
+
+export async function deliver(subject: string, text: string, replyTo: string, row: string[], range: string, to?: string, html?: string) {
   const mail = async () => {
     const r = await new Resend(process.env.RESEND_API_KEY).emails.send({
-      from: mailFrom(), to: to ?? process.env.NOTIFY_TO!, replyTo, subject, text,
+      from: mailFrom(), to: to ?? process.env.NOTIFY_TO!, replyTo, subject, text, ...(html ? { html } : {}),
     });
     if (r.error) throw new Error(r.error.message);
   };
@@ -24,11 +25,11 @@ export async function deliver(subject: string, text: string, replyTo: string, ro
   return res.some((r) => r.status === "fulfilled");
 }
 
-// Automatic "we received your message" email. A failure here never breaks the form.
-export async function confirm(to: string, subject: string, text: string) {
+// Automatic confirmation to the visitor. A failure here never breaks the form.
+export async function confirm(to: string, subject: string, text: string, html?: string) {
   try {
     const r = await new Resend(process.env.RESEND_API_KEY).emails.send({
-      from: "Meric Agro <info@meric-agro.com>", to, replyTo: "info@meric-agro.com", subject, text,
+      from: "Meric Agro <info@meric-agro.com>", to, replyTo: "info@meric-agro.com", subject, text, ...(html ? { html } : {}),
     });
     if (r.error) console.error("Confirmation failed:", r.error.message);
   } catch (e) {
