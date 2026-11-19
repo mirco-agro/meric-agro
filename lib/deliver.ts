@@ -4,10 +4,12 @@ import { google } from "googleapis";
 export const googleKey = () =>
   (process.env.GOOGLE_PRIVATE_KEY ?? "").trim().replace(/^["']|["']$/g, "").replace(/\\n/g, "\n");
 
+export const mailFrom = () =>
+  (process.env.MAIL_FROM ?? "").trim().replace(/^["']|["']$/g, "") || "Meric Agro <enquiries@meric-agro.com>";
 export async function deliver(subject: string, text: string, replyTo: string, row: string[], range: string, to?: string) {
   const mail = async () => {
     const r = await new Resend(process.env.RESEND_API_KEY).emails.send({
-      from: process.env.MAIL_FROM!, to: to ?? process.env.NOTIFY_TO!, replyTo, subject, text,
+      from: mailFrom(), to: to ?? process.env.NOTIFY_TO!, replyTo, subject, text,
     });
     if (r.error) throw new Error(r.error.message);
   };
