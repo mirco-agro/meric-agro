@@ -2,7 +2,7 @@
 import { z } from "zod";
 import { Resend } from "resend";
 import { google } from "googleapis";
-import { deliver, googleKey } from "../lib/deliver";
+import { deliver, confirm, googleKey } from "../lib/deliver";
 import { steps } from "../lib/form";
 import { products } from "../lib/content";
 
@@ -46,7 +46,9 @@ export async function submitApplication(_prev: State, fd: FormData): Promise<Sta
   const results = await Promise.allSettled([sendMail(), addRow()]);
   results.forEach((r) => r.status === "rejected" && console.error("Enquiry delivery failed:", r.reason));
   if (results.every((r) => r.status === "rejected"))
-    return { ok: false, message: "We could not send your enquiry. Please call or WhatsApp us on +234 907 885 7329." };
+  return { ok: false, message: "We could not send your enquiry. Please call or WhatsApp us on +234 907 885 7329." };
+  await confirm(d.email, "We have received your message",
+  `Hello ${d.name},\n\nThank you for contacting Meric Agro. We have received your message and will reply soon.\n\nFor anything urgent, call or WhatsApp +234 907 885 7329 (8am to 6pm).\n\nMeric Agro Processing Limited\nGrowing Value. Harvesting the Future.`);
   return { ok: true, message: "Thank you. We have received your enquiry and will contact you soon." };
 }
 
@@ -61,6 +63,8 @@ export async function submitPartnership(_prev: State, fd: FormData): Promise<Sta
   const name = val("fullName", false);
   const text = answers.map((a) => `${a.q.label}: ${a.v || "-"}`).join("\n");
   const ok = await deliver(`New Farmer Partnership Application: ${name}`, text, email, [new Date().toISOString(), ...answers.map((a) => a.v)], "Partners!A:AZ");
+  if (ok) await confirm(email, "We have received your partnership application",
+  `Hello ${name},\n\nThank you for applying to the Meric Agro Farmer Partnership Programme. Our team will review your information and contact you if there is a suitable opportunity for further discussion.\n\nPlease note that applying does not guarantee a partnership, funding or produce purchase.\n\nMeric Agro Processing Limited\nGrowing Value. Harvesting the Future.`);
   return ok
     ? { ok: true, message: "Thank you. Your application has been received. Our team will review it and contact you if there is a suitable opportunity." }
     : { ok: false, message: "We could not send your application. Please call or WhatsApp us on +234 907 885 7329." };
@@ -76,6 +80,8 @@ export async function submitQuote(_prev: State, fd: FormData): Promise<State> {
   const fields: [string, string][] = [["Name", name], ["Business", g("business")], ["Phone", phone], ["Email", email], ["Buyer type", g("type")], ["Delivery location", g("location")], ["Quantity needed", g("quantity")], ["Frequency", g("frequency")], ["Needed by", g("needed")], ["Message", g("message")]];
   const text = [`Product: ${product.name}`, ...fields.map(([k, v]) => `${k}: ${v || "-"}`)].join("\n");
   const ok = await deliver(`Quote request: ${product.name}`, text, email, [new Date().toISOString(), product.name, ...fields.map((f) => f[1])], "Quotes!A:L");
+  if (ok) await confirm(email, "We have received your quote request",
+  `Hello ${name},\n\nThank you for requesting a quote for ${product.name}. Our team will review your request and get back to you. Price and quantity are discussed on enquiry.\n\nFor anything urgent, call or WhatsApp +234 907 885 7329 (8am to 6pm).\n\nMeric Agro Processing Limited\nGrowing Value. Harvesting the Future.`);
   return ok
     ? { ok: true, message: `Thank you. We have received your quote request for ${product.name} and will contact you soon.` }
     : { ok: false, message: "We could not send your request. Please call or WhatsApp us on +234 907 885 7329." };
