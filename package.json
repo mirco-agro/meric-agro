@@ -1,23 +1,33 @@
 {
   "name": "meric-agro",
+  "version": "0.1.0",
   "private": true,
-  "scripts": { "dev": "next dev", "build": "next build", "start": "next start" },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
+    "@sanity/image-url": "^2.2.0",
+    "googleapis": "^144.0.0",
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.13",
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "gsap": "^3.12.5",
-    "lenis": "^1.1.13",
     "resend": "^4.0.0",
-    "googleapis": "^144.0.0",
+    "sanity": "^6.24.0",
+    "styled-components": "^6.6.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "typescript": "^5.6.0",
+    "@sanity/client": "^8.17.0",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "tailwindcss": "^4.0.0",
-    "@tailwindcss/postcss": "^4.0.0"
+    "tsx": "^4.23.15",
+    "typescript": "^5.6.0"
   }
 }

@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { site } from "../lib/content";
 import TawkChat from "../components/TawkChat";
 import "./globals.css";
+import SiteShell from "../components/SiteShell"
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" });
 const body = Newsreader({ subsets: ["latin"], variable: "--font-newsreader" });
@@ -75,12 +76,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
-        <Header />
-        <Smooth>
+        <SiteShell header={<Header />} footer={<Footer />} extras={<><TawkChat id={process.env.TAWK_ID} /></>}>
           {children}
-        </Smooth>
-        <TawkChat id={process.env.TAWK_ID} />
-        <Footer />
+        </SiteShell>  
+      
       </body>
     </html>
   );
