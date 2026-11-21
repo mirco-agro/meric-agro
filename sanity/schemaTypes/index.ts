@@ -82,6 +82,7 @@ const galleryItem = defineType({
   fields: [
     defineField({ name: "photo", type: "image", options: { hotspot: true } }),
     defineField({ name: "video", title: "YouTube video ID (instead of a photo)", type: "string" }),
+    defineField({ name: "isShort", title: "This is a vertical video (YouTube Short)", type: "boolean", initialValue: false, hidden: ({ document }) => !document?.video }),
     defineField({ name: "caption", type: "string", validation: (r) => r.required() }),
     defineField({ name: "order", title: "Order (1 comes first)", type: "number" }),
   ],

@@ -2,8 +2,8 @@
 import { z } from "zod";
 import { deliver, confirm } from "../lib/deliver";
 import { steps } from "../lib/form";
-import { products } from "../lib/content";
 import { layout, rows, sectioned, confirmation } from "../lib/email";
+import { getProducts } from "../lib/data";
 
 type State = { ok: boolean; message: string };
 const FAIL = "We could not send your request. Please call or WhatsApp us on +234 907 885 7329.";
@@ -73,6 +73,7 @@ export async function submitPartnership(_prev: State, fd: FormData): Promise<Sta
 
 /* ---------- Quote request ---------- */
 export async function submitQuote(_prev: State, fd: FormData): Promise<State> {
+  const products = await getProducts();
   if (fd.get("company")) return { ok: true, message: "Thank you. We will be in touch." };
   const product = products.find((p) => p.slug === fd.get("slug"));
   const g = (n: string) => String(fd.get(n) ?? "").trim().slice(0, 1500);

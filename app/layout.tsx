@@ -1,20 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Newsreader } from "next/font/google";
-import Smooth from "../components/Smooth";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { site } from "../lib/content";
 import TawkChat from "../components/TawkChat";
 import "./globals.css";
-import SiteShell from "../components/SiteShell"
+import SiteShell from "../components/SiteShell";
+import { getSite } from "../lib/data";
+import ChatButton from "../components/ChatButton";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" });
 const body = Newsreader({ subsets: ["latin"], variable: "--font-newsreader" });
 
 // Set NEXT_PUBLIC_SITE_URL in Vercel only when the real domain goes live.
 const live = process.env.NEXT_PUBLIC_SITE_URL;
-const url = live ?? "https://meric-agro.com";
-
+const url = live || "https://meric-agro.com";
 const title = "Meric Agro Processing | Cocoa, Plantain and Oil Palm, Nigeria";
 const description = "Nigerian agribusiness in Ibadan, Oyo State growing cocoa, plantain and oil palm. Request a quote for produce or join our farmer partnership programme.";
 
@@ -51,35 +50,41 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Meric Agro Processing Limited",
-  url,
-  logo: `${url}/icon.png`,
-  description,
-  email: site.emailOne,
-  telephone: site.phone,
-  sameAs: [site.instagram],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "No 5 Akinfenwa Iwajowa Road, Alakia",
-    addressLocality: "Ibadan",
-    addressRegion: "Oyo State",
-    addressCountry: "NG",
-  },
-  areaServed: "NG",
-};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const site = await getSite();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Meric Agro Processing Limited",
+    url,
+    logo: `${url}/icon.png`,
+    description,
+    email: site.emailOne,
+    telephone: site.phone,
+    sameAs: [site.instagram, site.tiktok].filter(Boolean),
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "No 5 Akinfenwa Iwajowa Road, Alakia",
+      addressLocality: "Ibadan",
+      addressRegion: "Oyo State",
+      addressCountry: "NG",
+    },
+    areaServed: "NG",
+  };
+
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
-        <SiteShell header={<Header />} footer={<Footer />} extras={<><TawkChat id={process.env.TAWK_ID} /></>}>
+        <SiteShell
+          header={<Header phone={site.phone} email={site.emailOne} />}
+          footer={<Footer />}
+          extras={<><TawkChat id={process.env.TAWK_ID} /><ChatButton /></>}
+        >
           {children}
-        </SiteShell>  
-      
+        </SiteShell>
       </body>
     </html>
   );

@@ -2,12 +2,14 @@ import Image from "next/image";
 import Hero from "../components/Hero";
 import Journey from "../components/Journey";
 import Gallery from "../components/Gallery";
-import { about, products, figures, figuresNote, farmVideo } from "../lib/content";
+import { about, figures, figuresNote, farmVideo } from "../lib/content";
 import { pad, h2, quote, Pin } from "../lib/ui";
 import CropFigures from "../components/CropFigures";
 import YouTubeEmbed from "../components/YouTubeEmbed";
+import { getProducts, getGallery, getFigures } from "../lib/data";
 
-export default function Home() {
+export default async function Home() {
+  const [products, gallery, figures] = await Promise.all([getProducts(), getGallery(), getFigures()]);
   const max = Math.max(...figures.map((f) => f.count));
   return (
     <main id="top">
@@ -57,7 +59,7 @@ export default function Home() {
     
       <section id="gallery" className={pad}>
         <h2 className={h2}>Life on the farm</h2>
-        <div className="mt-14"><Gallery /></div>
+        <div className="mt-14"><Gallery items={gallery} /></div>
       </section>
 
       <section className="bg-leaf/15 px-6 py-20 md:px-[8vw]">

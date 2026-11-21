@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-20T16:48:51.563Z",
+  "createdAt": "2026-11-21T19:38:31.213Z",
   "studioVersion": "6.24.0",
   "version": 3,
   "workspaces": [
@@ -15,7 +15,7 @@
       },
       "name": "meric-agro",
       "projectId": "15homxd2",
-      "schema": "ded9d8aa.create-schema.json",
+      "schema": "2349e669.create-schema.json",
       "title": "Meric Agro",
       "tools": "a1fd46b5.create-tools.json"
     }

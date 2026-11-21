@@ -1,9 +1,11 @@
-import { site } from "../lib/content";
+import { getSite } from "../lib/data"; 
+import { fmtPhone } from "../lib/format";
 import { PhoneIcon, MailIcon } from "../lib/ui";
 import Socials from "./Socials";
 const links = [["About", "/about"], ["Products", "/products"], ["Services", "/services"], ["Gallery", "/#gallery"], ["Team", "/about#team"], ["Farmer Partnership", "/partner"], ["Contact", "/contact"]];
 
-export default function Footer() {
+export default async function Footer() {
+  const site = await getSite();
   return (
     <footer className="relative overflow-hidden bg-forest text-bone">
       <div className="px-6 pb-6 pt-20 md:px-[8vw] md:pt-28">
@@ -29,7 +31,7 @@ export default function Footer() {
           <div>
             <h3 className="font-display font-bold text-palm">Reach us</h3>
             <ul className="mt-4 space-y-2">
-              <li><a href={`tel:${site.phone}`} className="inline-flex items-center gap-2 hover:text-palm"><PhoneIcon />+234 907 885 7329</a></li>
+              <li><a href={`tel:${site.phone}`} className="inline-flex items-center gap-2 hover:text-palm"><PhoneIcon />{fmtPhone(site.phone)}</a></li>
               <li><a href={`mailto:${site.emailOne}`} className="inline-flex items-start gap-2 break-all hover:text-palm"><span className="mt-0.5"><MailIcon /></span>{site.emailOne}</a></li>
               <li className="text-bone/70">Open {site.hours}</li>
             </ul>

@@ -1,17 +1,16 @@
 import Image from "next/image";
 import PageHead from "../../components/PageHead";
-import { products, upcoming } from "../../lib/content";
+import { upcoming } from "../../lib/content";
+import { getProducts } from "../../lib/data";
 import { pad, quote, Pin } from "../../lib/ui";
 
 export const metadata = { title: "Plantain, Cocoa and Oil Palm", description: "Fresh plantain, cocoa and oil palm grown in Oyo State, Nigeria. Request a quote for wholesale and commercial supply." };
 
-export default function Products() {
+export default async function Products() {
+  const products = await getProducts();
   return (
     <main>
-      <PageHead
-        title={<>What we <span className="text-palm">grow</span></>}
-        intro="Oil palm, cocoa and plantain from our farms in Onipe and Onigambari, Ibadan, Oyo State, Nigeria. Prices and quantities are discussed on enquiry."
-      />
+      <PageHead title={<>What we <span className="text-palm">grow</span></>} intro="Oil palm, cocoa and plantain from our farms in Ibadan, Oyo State. Prices and quantities are discussed on enquiry." />
       <section className={pad}>
         <div className="space-y-24">
           {products.map((p, i) => (

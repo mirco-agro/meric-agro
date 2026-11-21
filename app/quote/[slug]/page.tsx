@@ -1,13 +1,15 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import QuoteForm from "../../../components/QuoteForm";
-import { products } from "../../../lib/content";
+import { getProducts } from "../../../lib/data";
 
-export function generateStaticParams() { return products.map((p) => ({ slug: p.slug })); }
+export async function generateStaticParams() {
+  return (await getProducts()).map((p) => ({ slug: p.slug }));
+}
 
 export default async function Quote({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const p = products.find((x) => x.slug === slug);
+  const p = (await getProducts()).find((x) => x.slug === slug);
   if (!p) notFound();
   return (
     <main className="grid gap-16 px-6 pb-24 pt-36 md:grid-cols-[1fr_1.3fr] md:px-[8vw]">
