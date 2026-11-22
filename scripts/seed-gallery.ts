@@ -9,9 +9,11 @@ const client = createClient({
 
 // file paths are relative to public/images/
 const items: [string, string][] = [
-  ["drone/farm-aerial-01.jpg", "Our farm from above"],
-  ["drone/farm-oblique-04.jpg", "Plantain rows, aerial view"],
-  ["drone/farm-workers-06.jpg", "Team members walking the rows"],
+  ["drone/stills/farm-aerial-01.jpg", "Our farm from above"],
+  ["drone/stills/farm-aerial-02.jpg", "Plantain rows, aerial view"],
+  ["drone/stills/farm-aerial-03.jpg", "Team members walking the rows"],
+  ["drone/stills/farm-rows-07.jpg", "Plantain rows from above"],
+  ["drone/stills/farm-aerial-02.jpg", "Our fields and the surrounding forest"],
   ["gallery/plantain-field-01.jpg", "Plantain farm"],
   ["gallery/plantain-field-02.jpg", "Plantain in the field"],
   ["gallery/plantain-field-03.jpg", "Plantain with flower stalk"],

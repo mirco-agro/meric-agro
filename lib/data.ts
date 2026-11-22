@@ -80,9 +80,9 @@ export async function getServices() {
 export type GalleryItem = { src?: string; video?: string; isShort?: boolean; cap: string; w: number; h: number };
 
 export const localGallery: GalleryItem[] = [
-  { src: "/images/drone/farm-aerial-01.jpg", cap: "Our farm from above", w: 1800, h: 1013 },
-  { src: "/images/drone/farm-oblique-04.jpg", cap: "Plantain rows, aerial view", w: 1800, h: 1013 },
-  { src: "/images/drone/farm-workers-06.jpg", cap: "Team members walking the rows", w: 1800, h: 1013 },
+  { src: "/images/drone/stills/farm-aerial-01.jpg", cap: "Our farm from above", w: 1800, h: 1013 },
+{ src: "/images/drone/stills/farm-aerial-02.jpg", cap: "Plantain rows, aerial view", w: 1800, h: 1013 },
+{ src: "/images/drone/stills/farm-aerial-03.jpg", cap: "Team members walking the rows", w: 1800, h: 1013 },
   { src: "/images/gallery/plantain-field-01.jpg", cap: "Plantain farm", w: 1200, h: 1600 },
   { src: "/images/gallery/plantain-field-02.jpg", cap: "Plantain in the field", w: 1200, h: 1600 },
   { src: "/images/gallery/plantain-field-03.jpg", cap: "Plantain with flower stalk", w: 1200, h: 1600 },

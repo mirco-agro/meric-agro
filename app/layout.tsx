@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Newsreader } from "next/font/google";
+import { Bricolage_Grotesque, Newsreader } from "next/font/google"; 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import TawkChat from "../components/TawkChat";
