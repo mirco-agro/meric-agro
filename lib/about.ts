@@ -16,7 +16,12 @@ export const bios: Record<string, string[]> = {
     "Oluwabanke joined Meric Agro Processing in February 2026 as Farm Operations & Cost Control Officer. She plays a key role in supporting the company’s farm operations through financial monitoring, cost control and operational reporting.",
     "Her responsibilities include monitoring farm expenses and budgets, tracking production and yield records, analysing operational costs and preparing reports to support management decisions. She also contributes to identifying operational inefficiencies, improving financial accountability and ensuring effective resource management across the company’s farm operations.",
     "Through her attention to detail and analytical approach, Oluwabanke supports the company’s commitment to efficient agricultural operations, cost management and sustainable business growth."],
-  tunde: [],      // waiting for bio
+  tunde: [
+    "Tunde Ajibola is an agricultural professional and Managing Director of Deep Green Integrated Farms. He also serves as Lead Farm Consultant at Meric Agro Processing Limited, where he contributes to the development, planning and management of the company’s agricultural operations.",
+    "He has played an important role in establishing and developing Meric Agro’s cultivation activities across its key crops: oil palm, cocoa and plantain. His responsibilities include supporting farm development, crop establishment, field operations and the implementation of effective agricultural practices.",
+    "Tunde holds a Bachelor of Science degree in Economics and has undertaken several agricultural certification programmes and professional training courses at the International Institute of Tropical Agriculture (IITA), the Institute of Agricultural Research and Training (IAR&T), and other agricultural institutions.",
+    "He brings together business knowledge, practical agricultural experience and a commitment to developing productive, well-managed and sustainable farming operations."
+  ],      // waiting for bio
 };
 
 // The client's seven goals, grouped into four outcomes. Card text is his wording.
