@@ -4,7 +4,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export default function Hero() {
+export default function Hero({ line1, line2, text }: { line1: string; line2: string; text: string }) {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {

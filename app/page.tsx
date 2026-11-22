@@ -2,29 +2,32 @@ import Image from "next/image";
 import Hero from "../components/Hero";
 import Journey from "../components/Journey";
 import Gallery from "../components/Gallery";
-import { about, figures, figuresNote, farmVideo } from "../lib/content";
+
 import { pad, h2, quote, Pin } from "../lib/ui";
 import CropFigures from "../components/CropFigures";
 import YouTubeEmbed from "../components/YouTubeEmbed";
-import { getProducts, getGallery, getFigures } from "../lib/data";
+import { getProducts, getGallery, getFigures, getHome, getJourney } from "../lib/data";
+
 
 export default async function Home() {
-  const [products, gallery, figures] = await Promise.all([getProducts(), getGallery(), getFigures()]);
-  const max = Math.max(...figures.map((f) => f.count));
+
+  const [products, gallery, figures, home, stages] = await Promise.all([getProducts(), getGallery(), getFigures(), getHome(), getJourney()]);
+
   return (
     <main id="top">
-      <Hero />
+    <Hero line1={home.heroLine1} line2={home.heroLine2} text={home.heroText} />
+
 
       <section className={`${pad} grid gap-12 md:grid-cols-[1fr_1.2fr]`}>
-        <h2 className={h2}>We are building agriculture that adds value at every step.</h2>
+        <h2 className={h2}>{home.introHeading}</h2>
         <div className="space-y-5 md:pt-3">
-          <p>{about[0]}</p>
-          <p>{about[1]}</p>
+          <p>{home.introText1}</p>
+          <p>{home.introText2}</p>
           <a href="/about" className="inline-block font-display font-semibold underline decoration-palm decoration-2 underline-offset-4">Read our story</a>
         </div>
       </section>
 
-      <Journey />
+      <Journey stages={stages} />
 
       <section className={pad}>
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -50,7 +53,7 @@ export default async function Home() {
         </ul>
       </section>
 
-     <CropFigures />
+     <CropFigures figures={figures} />
 
     {/* <section className={pad}>
       <h2 className={h2}>See our farm from above</h2>

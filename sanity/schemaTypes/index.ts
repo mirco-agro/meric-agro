@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, type FieldDefinition } from "sanity";
 
 const siteSettings = defineType({
   name: "siteSettings", title: "Site settings", type: "document",
@@ -88,4 +88,46 @@ const galleryItem = defineType({
   ],
 });
 
-export const schemaTypes = [siteSettings, cropFigures, teamMember, product, service, galleryItem];
+const s = (name: string, title: string) => defineField({ name, title, type: "string" });
+const t = (name: string, title: string, rows = 3) => defineField({ name, title, type: "text", rows });
+const strings = (name: string, title: string) => defineField({ name, title, type: "array", of: [{ type: "string" }] });
+const items = (name: string, title: string, fields: FieldDefinition[], previewTitle: string) =>
+  defineField({ name, title, type: "array", of: [{ type: "object", fields, preview: { select: { title: previewTitle } } }] });
+const page = (name: string, title: string, fields: FieldDefinition[]) => defineType({ name, title, type: "document", fields });
+
+const homePage = page("homePage", "Home page", [
+  s("heroLine1", "Hero headline, line 1"), s("heroLine2", "Hero headline, line 2 (shown in orange)"), t("heroText", "Hero text under the headline"),
+  s("introHeading", "Intro heading"), t("introText1", "Intro paragraph 1", 4), t("introText2", "Intro paragraph 2", 4),
+]);
+const journey = page("journey", "Journey section", [
+  items("stages", "The four stages (keep exactly four)", [
+    s("title", "Stage name"), t("text", "Description"), s("status", "Status tag, for example Live today"),
+    t("line", "Where we are: one honest sentence. Type {crops} to show the live crop total."),
+  ], "title"),
+]);
+const aboutPage = page("aboutPage", "About page", [
+  t("heroIntro", "Opening text under the title"), t("intro", "Intro paragraph"), s("beliefHeading", "Big statement"),
+  t("beliefText", "Text under the big statement"), s("videoHeading", "Video section heading"), t("videoText", "Video section text"),
+  s("videoId", "YouTube video ID for the farm tour"),
+]);
+const purposePage = page("purposePage", "Our Purpose page", [
+  t("heroIntro", "Opening text under the title"), t("mission", "Mission", 4), t("vision", "Vision", 4),
+  items("outcomes", "The four outcomes", [s("title", "Outcome title"), s("tag", "Status tag"), strings("goals", "Goals in this outcome")], "title"),
+  s("practiceHeading", "Heading: putting our purpose into practice"), t("practiceText", "Text for that section"),
+]);
+const storyPage = page("storyPage", "Our Story page", [
+  t("heroIntro", "Opening text under the title"),
+  items("story", "Story timeline", [s("label", "Heading"), t("text", "Text", 4)], "label"),
+  t("strategy", "Long-term strategy text", 4), strings("stages", "Strategy steps, in order"),
+]);
+const commitment = page("commitment", "Commitment statement", [t("line1", "Big statement"), t("line2", "Paragraph", 4), t("line3", "Closing line", 2)]);
+const partnerPage = page("partnerPage", "Farmer Partnership page", [
+  strings("intro", "Opening paragraphs"),
+  items("models", "Partnership models", [s("name", "Name"), t("text", "Description", 4), t("who", "Suitable for", 2)], "name"),
+  items("gains", "What farmers gain", [s("t", "Title"), t("d", "Text", 2)], "t"),
+  strings("expects", "What we expect from partners"), t("note", "Note under the benefits", 2),
+]);
+const contactPage = page("contactPage", "Contact page text", [s("heading", "Page heading"), t("note", "Helper text under the contact details", 2)]);
+
+export const schemaTypes = [siteSettings, cropFigures, teamMember, product, service, galleryItem,
+  homePage, journey, aboutPage, purposePage, storyPage, commitment, partnerPage, contactPage];

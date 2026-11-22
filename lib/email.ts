@@ -1,4 +1,8 @@
-import { site } from "./content";
+import { site as defaults } from "./content";
+import { fmtPhone } from "./format";
+
+let site = defaults as unknown as { phone: string; emailOne: string; places: { text: string }[] };
+export const setEmailSite = (s: typeof site) => { site = s; };
 
 const C = { forest: "#0b2b1c", palm: "#e5501b", bone: "#eff2ea", soil: "#22160e", line: "#dfe3d8", mute: "#5c5a52" };
 const font = "-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
@@ -79,10 +83,10 @@ export function confirmation(o: { name: string; heading: string; message: string
     <p style="margin:18px 0 0;font-size:15px;line-height:1.7;">${esc(o.message)}</p>
     ${summary.length ? `<p style="margin:24px 0 0;font-size:13px;font-weight:700;color:${C.forest};">What you sent us</p>${rows(summary)}` : ""}
     ${o.note ? `<p style="margin:22px 0 0;padding:12px 14px;background:${C.bone};font-size:13px;line-height:1.6;color:${C.mute};">${esc(o.note)}</p>` : ""}
-    <p style="margin:22px 0 0;font-size:14px;line-height:1.7;">For anything urgent, call or WhatsApp us on <strong>+234 907 885 7329</strong> (8am to 6pm).</p>`;
+    <p style="margin:22px 0 0;font-size:14px;line-height:1.7;">For anything urgent, call or WhatsApp us on ${fmtPhone(site.phone)} (8am to 6pm).</p>`;
   const html = layout({
     preheader: o.message, title: o.heading, intro: `Hello ${o.name},`, body, kind: "confirm",
-    button: { label: "Chat with us on WhatsApp", href: "https://wa.me/2349078857329" },
+    button: { label: "Chat with us on WhatsApp", href: `https://wa.me/${site.phone.replace(/\D/g, "")}` },
   });
   return { text, html };
 }

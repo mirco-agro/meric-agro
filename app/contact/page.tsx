@@ -3,16 +3,18 @@ import Socials from "../../components/Socials";
 import { getSite } from "../../lib/data"; 
 import { fmtPhone } from "../../lib/format";
 import { PhoneIcon, MailIcon } from "../../lib/ui";
+import { getContact } from "../../lib/data"
 
 export const metadata = { title: "Contact", description: "Call, WhatsApp or email Meric Agro Processing in Ibadan, Oyo State. Offices and farm addresses." };
 const link = "font-semibold underline decoration-palm decoration-2 underline-offset-4";
 
 export default async function Contact() {
+  const page = await getContact();
   const site = await getSite();
   return (
     <main className="grid gap-16 px-6 pb-24 pt-40 md:grid-cols-[1fr_1.3fr] md:px-[8vw]">
       <div>
-        <h1 className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight md:text-7xl">Let’s create value across the agricultural value chain.</h1>
+        <h1 className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight md:text-7xl">{page.heading}</h1>
         <address className="mt-10 space-y-4 not-italic">
           <p><a className={`${link} inline-flex items-center gap-2`} href={`tel:${site.phone}`}><PhoneIcon />{fmtPhone(site.phone)}</a> <span className="text-soil/70">(call or WhatsApp)</span></p>
           <p><a className={`${link} inline-flex items-center gap-2`} href={`mailto:${site.emailOne}`}><MailIcon />{site.emailOne}</a></p>
@@ -20,7 +22,7 @@ export default async function Contact() {
           <p>Open {site.hours}</p>
           <div className="pt-2"><Socials /></div>
         </address>
-        <p className="mt-8 text-base text-soil/70">Looking for a price? Use the Request a Quote button on a product. Farmers and landowners can apply on the <a className={link} href="/partner">Farmer Partnership page</a>.</p>
+        <p className="mt-8 text-base text-soil/70">{page.note} Farmers and landowners can apply on the <a className={link} href="/partner">Farmer Partnership page</a>.</p>
       </div>
       <PartnerForm />
     </main>

@@ -492,5 +492,401 @@
     "name": "galleryItem",
     "type": "document",
     "title": "Gallery item"
+  },
+  {
+    "fields": [
+      {
+        "name": "heroLine1",
+        "type": "string",
+        "title": "Hero headline, line 1"
+      },
+      {
+        "name": "heroLine2",
+        "type": "string",
+        "title": "Hero headline, line 2 (shown in orange)"
+      },
+      {
+        "rows": 3,
+        "name": "heroText",
+        "type": "text",
+        "title": "Hero text under the headline"
+      },
+      {
+        "name": "introHeading",
+        "type": "string",
+        "title": "Intro heading"
+      },
+      {
+        "rows": 4,
+        "name": "introText1",
+        "type": "text",
+        "title": "Intro paragraph 1"
+      },
+      {
+        "rows": 4,
+        "name": "introText2",
+        "type": "text",
+        "title": "Intro paragraph 2"
+      }
+    ],
+    "name": "homePage",
+    "type": "document",
+    "title": "Home page"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Stage name"
+              },
+              {
+                "rows": 3,
+                "name": "text",
+                "type": "text",
+                "title": "Description"
+              },
+              {
+                "name": "status",
+                "type": "string",
+                "title": "Status tag, for example Live today"
+              },
+              {
+                "rows": 3,
+                "name": "line",
+                "type": "text",
+                "title": "Where we are: one honest sentence. Type {crops} to show the live crop total."
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "title"
+              }
+            },
+            "type": "object"
+          }
+        ],
+        "name": "stages",
+        "type": "array",
+        "title": "The four stages (keep exactly four)"
+      }
+    ],
+    "name": "journey",
+    "type": "document",
+    "title": "Journey section"
+  },
+  {
+    "fields": [
+      {
+        "rows": 3,
+        "name": "heroIntro",
+        "type": "text",
+        "title": "Opening text under the title"
+      },
+      {
+        "rows": 3,
+        "name": "intro",
+        "type": "text",
+        "title": "Intro paragraph"
+      },
+      {
+        "name": "beliefHeading",
+        "type": "string",
+        "title": "Big statement"
+      },
+      {
+        "rows": 3,
+        "name": "beliefText",
+        "type": "text",
+        "title": "Text under the big statement"
+      },
+      {
+        "name": "videoHeading",
+        "type": "string",
+        "title": "Video section heading"
+      },
+      {
+        "rows": 3,
+        "name": "videoText",
+        "type": "text",
+        "title": "Video section text"
+      },
+      {
+        "name": "videoId",
+        "type": "string",
+        "title": "YouTube video ID for the farm tour"
+      }
+    ],
+    "name": "aboutPage",
+    "type": "document",
+    "title": "About page"
+  },
+  {
+    "fields": [
+      {
+        "rows": 3,
+        "name": "heroIntro",
+        "type": "text",
+        "title": "Opening text under the title"
+      },
+      {
+        "rows": 4,
+        "name": "mission",
+        "type": "text"
+      },
+      {
+        "rows": 4,
+        "name": "vision",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Outcome title"
+              },
+              {
+                "name": "tag",
+                "type": "string",
+                "title": "Status tag"
+              },
+              {
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "name": "goals",
+                "type": "array",
+                "title": "Goals in this outcome"
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "title"
+              }
+            },
+            "type": "object"
+          }
+        ],
+        "name": "outcomes",
+        "type": "array",
+        "title": "The four outcomes"
+      },
+      {
+        "name": "practiceHeading",
+        "type": "string",
+        "title": "Heading: putting our purpose into practice"
+      },
+      {
+        "rows": 3,
+        "name": "practiceText",
+        "type": "text",
+        "title": "Text for that section"
+      }
+    ],
+    "name": "purposePage",
+    "type": "document",
+    "title": "Our Purpose page"
+  },
+  {
+    "fields": [
+      {
+        "rows": 3,
+        "name": "heroIntro",
+        "type": "text",
+        "title": "Opening text under the title"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "title": "Heading"
+              },
+              {
+                "rows": 4,
+                "name": "text",
+                "type": "text"
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label"
+              }
+            },
+            "type": "object"
+          }
+        ],
+        "name": "story",
+        "type": "array",
+        "title": "Story timeline"
+      },
+      {
+        "rows": 4,
+        "name": "strategy",
+        "type": "text",
+        "title": "Long-term strategy text"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "stages",
+        "type": "array",
+        "title": "Strategy steps, in order"
+      }
+    ],
+    "name": "storyPage",
+    "type": "document",
+    "title": "Our Story page"
+  },
+  {
+    "fields": [
+      {
+        "rows": 3,
+        "name": "line1",
+        "type": "text",
+        "title": "Big statement"
+      },
+      {
+        "rows": 4,
+        "name": "line2",
+        "type": "text",
+        "title": "Paragraph"
+      },
+      {
+        "rows": 2,
+        "name": "line3",
+        "type": "text",
+        "title": "Closing line"
+      }
+    ],
+    "name": "commitment",
+    "type": "document",
+    "title": "Commitment statement"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "intro",
+        "type": "array",
+        "title": "Opening paragraphs"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "rows": 4,
+                "name": "text",
+                "type": "text",
+                "title": "Description"
+              },
+              {
+                "rows": 2,
+                "name": "who",
+                "type": "text",
+                "title": "Suitable for"
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "name"
+              }
+            },
+            "type": "object"
+          }
+        ],
+        "name": "models",
+        "type": "array",
+        "title": "Partnership models"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "t",
+                "type": "string",
+                "title": "Title"
+              },
+              {
+                "rows": 2,
+                "name": "d",
+                "type": "text",
+                "title": "Text"
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "t"
+              }
+            },
+            "type": "object"
+          }
+        ],
+        "name": "gains",
+        "type": "array",
+        "title": "What farmers gain"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "expects",
+        "type": "array",
+        "title": "What we expect from partners"
+      },
+      {
+        "rows": 2,
+        "name": "note",
+        "type": "text",
+        "title": "Note under the benefits"
+      }
+    ],
+    "name": "partnerPage",
+    "type": "document",
+    "title": "Farmer Partnership page"
+  },
+  {
+    "fields": [
+      {
+        "name": "heading",
+        "type": "string",
+        "title": "Page heading"
+      },
+      {
+        "rows": 2,
+        "name": "note",
+        "type": "text",
+        "title": "Helper text under the contact details"
+      }
+    ],
+    "name": "contactPage",
+    "type": "document",
+    "title": "Contact page text"
   }
 ]

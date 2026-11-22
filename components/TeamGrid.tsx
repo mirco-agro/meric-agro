@@ -22,7 +22,7 @@ export default function TeamGrid({ members }: { members: Member[] }) {
     <>
       <ul className="mx-auto grid max-w-4xl grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-4">
         {members.map((p, i) => (
-          <li key={p.name}>
+          <li key={p.name} className="flex flex-col">
             <div className="relative aspect-[4/5] overflow-hidden bg-forest">
               <span aria-hidden className="absolute inset-0 flex items-center justify-center font-display text-5xl font-extrabold text-bone/20">{initials(p.name)}</span>
               <Image src={p.photo} alt={p.name} fill sizes="(min-width:768px) 220px, 45vw" className="object-cover" />
@@ -30,7 +30,7 @@ export default function TeamGrid({ members }: { members: Member[] }) {
             <h3 className="mt-3 font-display text-lg font-bold leading-tight">{p.name}</h3>
             <p className="mt-1 text-sm leading-snug text-soil/75">{p.role}</p>
             {p.bio.length > 0 && (
-              <button type="button" onClick={() => setOpen(i)} className="mt-2 font-display text-sm font-semibold underline decoration-palm decoration-2 underline-offset-4 hover:text-palm">View bio</button>
+              <button type="button" onClick={() => setOpen(i)} className="mt-auto self-start pt-3 font-display text-sm font-semibold underline decoration-palm decoration-2 underline-offset-4 hover:text-palm">View bio</button>
             )}
           </li>
         ))}

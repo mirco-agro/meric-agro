@@ -61,7 +61,7 @@ export const products = [
    {
     slug: "oil-palm",
     region: "Ibadan, Oyo State, Nigeria",
-    farms: ["Onigambari", "Onipe"], // TODO: confirm
+    farms: ["Onigambari"], // TODO: confirm
     who: "The palm oil industry and other commercial buyers.",
     avail: "Confirmed on enquiry.",
     name: "Oil Palm",

@@ -30,7 +30,7 @@ export default function Gallery({ items }: { items: GalleryItem[] }) {
     <>
       <ul className="columns-2 gap-4 md:columns-3">
         {photos.map((p, i) => (
-          <li key={p.video ?? p.src} className="mb-4 break-inside-avoid">
+          <li key={`${i}-${p.video ?? p.src}`} className="mb-4 break-inside-avoid">
             <button onClick={() => setOpen(i)} aria-label={`${p.video ? "Play video" : "Open photo"}: ${p.cap}`} className="group relative block w-full overflow-hidden bg-forest">
               {p.video ? (
                 <div className={`relative ${p.isShort ? "aspect-[9/16]" : "aspect-video"}`}>

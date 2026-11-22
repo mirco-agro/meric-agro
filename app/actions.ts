@@ -4,6 +4,8 @@ import { deliver, confirm } from "../lib/deliver";
 import { steps } from "../lib/form";
 import { layout, rows, sectioned, confirmation } from "../lib/email";
 import { getProducts } from "../lib/data";
+import {setEmailSite} from "../lib/email";
+import {getSite} from "../lib/data";
 
 type State = { ok: boolean; message: string };
 const FAIL = "We could not send your request. Please call or WhatsApp us on +234 907 885 7329.";
@@ -36,6 +38,7 @@ export async function submitApplication(_prev: State, fd: FormData): Promise<Sta
   if (!ok) return { ok: false, message: FAIL };
   const c = confirmation({ name: d.name, heading: "We have received your message", message: "Thank you for contacting Meric Agro. We have received your message and will reply as soon as we can.", summary: [["Your message", d.message]] });
   await confirm(d.email, "We have received your message", c.text, c.html);
+  setEmailSite(await getSite());
   return { ok: true, message: "Thank you. We have received your enquiry and will contact you soon." };
 }
 
@@ -68,6 +71,7 @@ export async function submitPartnership(_prev: State, fd: FormData): Promise<Sta
     note: "Applying does not guarantee a partnership, funding, produce purchase or any other commercial commitment from Meric Agro Processing Limited.",
   });
   await confirm(email, "We have received your partnership application", c.text, c.html);
+  setEmailSite(await getSite());
   return { ok: true, message: "Thank you. Your application has been received. Our team will review it and contact you if there is a suitable opportunity." };
 }
 
@@ -95,5 +99,6 @@ export async function submitQuote(_prev: State, fd: FormData): Promise<State> {
     summary: [["Product", product.name], ["Quantity", g("quantity")], ["Delivery location", g("location")], ["Needed by", g("needed")]],
   });
   await confirm(email, "We have received your quote request", c.text, c.html);
+  setEmailSite(await getSite());
   return { ok: true, message: `Thank you. We have received your quote request for ${product.name} and will contact you soon.` };
 }

@@ -2,15 +2,18 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { figures, figuresNote } from "../lib/content";
+import { figuresNote } from "../lib/content";
 import { pad, h2 } from "../lib/ui";
 
-const fmt = (n: number) => Math.round(n).toLocaleString("en-US");
-const total = figures.reduce((s, f) => s + f.count, 0);
-const max = Math.max(...figures.map((f) => f.count));
+type Figure = { crop: string; count: number; label: string; color: string };
 
-export default function CropFigures() {
+const fmt = (n: number) => Math.round(n).toLocaleString("en-US");
+
+export default function CropFigures({ figures }: { figures: Figure[] }) {
   const root = useRef<HTMLElement>(null);
+  const sum = figures.reduce((s, f) => s + f.count, 0);
+  const total = Math.floor(sum / 1000) * 1000; // always true: 31,450 shows as "31,000+"
+  const max = Math.max(...figures.map((f) => f.count), 1);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -73,7 +76,7 @@ export default function CropFigures() {
       },
     });
     return () => st.kill();
-  }, []);
+  }, [total, figures]);
 
   return (
     <section ref={root} className={`${pad} bg-forest text-bone`}>

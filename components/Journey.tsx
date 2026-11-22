@@ -2,19 +2,13 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { core } from "../lib/content";
+import type { Stage } from "../lib/data";
 
 const colors = ["#0b2b1c", "#3a2216", "#5a2a12", "#12303a"];
 
-const meta = [
-  { status: "Live today", line: "34,650+ oil palm, cocoa and plantain crops on record across our farms in Onipe and Onigambari, Ibadan, Oyo State." },
-  { status: "Growing", line: "Building relationships with farmers and suppliers beyond our own farms." },
-  { status: "In development", line: "Plans for palm oil, cocoa and plantain products. Not yet established production lines." },
-  { status: "Building", line: "Supply relationships with wholesalers, distributors, retailers and food manufacturers." },
-];
-
-export default function Journey() {
+export default function Journey({ stages }: { stages: Stage[] }) {
   const root = useRef<HTMLElement>(null);
+  const n = stages.length;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -28,7 +22,6 @@ export default function Journey() {
     }
 
     const ctx = gsap.context(() => {
-      const n = core.length;
       const label = el.querySelector<HTMLElement>(".j-step")!;
       const dots = gsap.utils.toArray<HTMLElement>(".j-dot", el);
       let cur = -1;
@@ -57,7 +50,7 @@ export default function Journey() {
     }, root);
 
     return () => ctx.revert();
-  }, []);
+  }, [n]);
 
   return (
     <section
@@ -66,7 +59,7 @@ export default function Journey() {
       className="group relative h-[100svh] overflow-hidden text-bone data-[static=true]:h-auto data-[static=true]:py-24"
       style={{ background: colors[0] }}
     >
-      {colors.slice(1).map((c, k) => (
+      {colors.slice(1, n).map((c, k) => (
         <div key={c} aria-hidden className={`j-bg${k + 1} absolute inset-0 will-change-[opacity] group-data-[static=true]:hidden`} style={{ background: c, opacity: 0 }} />
       ))}
 
@@ -74,17 +67,17 @@ export default function Journey() {
         <h2 className="max-w-[15ch] font-display text-xl font-bold leading-tight md:max-w-none md:text-3xl">
           From our soil to your <span className="text-palm">market.</span>
         </h2>
-        <p aria-hidden className="j-step shrink-0 font-display text-sm text-bone/75 group-data-[static=true]:hidden md:text-base">Step 1 of {core.length}</p>
+        <p aria-hidden className="j-step shrink-0 font-display text-sm text-bone/75 group-data-[static=true]:hidden md:text-base">Step 1 of {n}</p>
       </div>
 
       <div aria-hidden className="absolute bottom-[14%] left-4 top-[26%] w-1 bg-bone/25 group-data-[static=true]:hidden md:left-[5vw]">
         <div className="j-bar h-full w-full origin-top scale-y-0 bg-palm will-change-transform" />
-        {core.map((c, k) => (
-          <span key={c.title} data-on={k === 0 ? "true" : "false"} className="j-dot absolute left-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-bone/50 transition-all duration-300 data-[on=true]:scale-125 data-[on=true]:bg-palm" style={{ top: `${(k / (core.length - 1)) * 100}%` }} />
+        {stages.map((c, k) => (
+          <span key={c.title} data-on={k === 0 ? "true" : "false"} className="j-dot absolute left-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-bone/50 transition-all duration-300 data-[on=true]:scale-125 data-[on=true]:bg-palm" style={{ top: `${(k / (n - 1)) * 100}%` }} />
         ))}
       </div>
 
-      {core.map((c, i) => (
+      {stages.map((c, i) => (
         <div
           key={c.title}
           data-stage
@@ -96,14 +89,13 @@ export default function Journey() {
               <h3 className="font-display text-[clamp(2.3rem,7vw,6.5rem)] font-extrabold leading-[0.95] tracking-tight">{c.title}</h3>
               <p className="mt-5 max-w-xl text-base text-bone/85 md:mt-7 md:text-xl">{c.text}</p>
             </div>
-
             <aside className="border border-bone/25 bg-black/20 p-5 md:p-7">
               <p className="flex items-center justify-between font-display text-sm text-bone/65">
                 <span>Where we are</span>
                 <span aria-hidden>Step {String(i + 1).padStart(2, "0")}</span>
               </p>
-              <span className="mt-4 inline-block bg-palm px-3 py-1 font-display text-sm font-semibold">{meta[i].status}</span>
-              <p className="mt-4 text-base leading-relaxed md:text-lg">{meta[i].line}</p>
+              <span className="mt-4 inline-block bg-palm px-3 py-1 font-display text-sm font-semibold">{c.status}</span>
+              <p className="mt-4 text-base leading-relaxed md:text-lg">{c.line}</p>
             </aside>
           </div>
         </div>
