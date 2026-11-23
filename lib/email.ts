@@ -10,9 +10,8 @@ const font = "-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
 export const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const br = (s: string) => esc(s).replace(/\n/g, "<br>");
 const base = () =>
-  process.env.NEXT_PUBLIC_SITE_URL ??
+  process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "https://meric-agro.com");
-
 type Row = [string, string];
 
 export const rows = (list: Row[]) =>

@@ -12,7 +12,7 @@ const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bric
 const body = Newsreader({ subsets: ["latin"], variable: "--font-newsreader" });
 
 // Set NEXT_PUBLIC_SITE_URL in Vercel only when the real domain goes live.
-const live = process.env.NEXT_PUBLIC_SITE_URL;
+const live = process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL;
 const url = live || "https://meric-agro.com";
 const title = "Meric Agro Processing | Cocoa, Plantain and Oil Palm, Nigeria";
 const description = "Nigerian agribusiness in Ibadan, Oyo State growing cocoa, plantain and oil palm. Request a quote for produce or join our farmer partnership programme.";

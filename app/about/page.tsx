@@ -1,42 +1,71 @@
+import Image from "next/image";
 import AboutHero from "../../components/AboutHero";
 import AboutNav from "../../components/AboutNav";
+import CommitmentBand from "../../components/CommitmentBand";
 import LearnMore from "../../components/LearnMore";
-import { getStory } from "../../lib/data";
+import YouTubeEmbed from "../../components/YouTubeEmbed";
+import { getAbout, getJourney, getStory } from "../../lib/data";
 import { pad } from "../../lib/ui";
 
-export const metadata = { title: "Our Story", description: "How Meric Agro Processing grew from an agricultural investment into a broader agribusiness vision in Oyo State, Nigeria." };
+export const metadata = { title: "About Us", description: "Meric Agro Processing is an Ibadan agribusiness building a value chain from farm to market: production, sourcing, processing and distribution." };
 
-export default async function Story() {
-  const s = await getStory();
+const images = ["/images/gallery/plantain-field-02.jpg", "/images/gallery/plantain-cocoa-01.jpg", "", ""];
+
+export default async function About() {
+  const [a, stages, story] = await Promise.all([getAbout(), getJourney(), getStory()]);
   return (
     <main>
-      <AboutHero title="Our Story" intro={s.heroIntro} img="/images/drone/stills/farm-aerial-01.jpg" />
+      <AboutHero title="About Meric Agro" intro={a.heroIntro} img="/images/drone/stills/farm-about.jpg" />
       <AboutNav />
-      <section className={`${pad} grid gap-12 md:grid-cols-[0.8fr_1.4fr]`}>
-        <h2 className="font-display text-4xl font-extrabold md:sticky md:top-44 md:self-start md:text-5xl">How we got here</h2>
-        <ol className="relative border-l-2 border-soil/30 pl-8">
-          {s.story.map((x) => (
-            <li key={x.label} className="relative pb-12 last:pb-0">
-              <span aria-hidden className="absolute -left-[41px] top-2 size-4 rounded-full bg-palm ring-8 ring-bone" />
-              <h3 className="font-display text-xl font-bold">{x.label}</h3>
-              <p className="mt-2 max-w-xl">{x.text}</p>
+
+      <section className={pad}>
+        <p className="max-w-3xl text-xl">{a.intro}</p>
+        <div className="mt-20 border-l-8 border-palm pl-6 md:pl-10">
+          <p className="font-display text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">{a.beliefHeading}</p>
+          <p className="mt-6 max-w-2xl text-xl">{a.beliefText}</p>
+        </div>
+      </section>
+
+      <section className="px-6 pb-24 md:px-[8vw] md:pb-32">
+        <div className="text-center">
+          <h2 className="mx-auto max-w-3xl font-display text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">{a.videoHeading}</h2>
+          <p className="mx-auto mt-5 max-w-2xl text-xl">{a.videoText}</p>
+        </div>
+        <div className="mx-auto mt-10 max-w-5xl"><YouTubeEmbed id={a.videoId} title={a.videoHeading} /></div>
+      </section>
+
+      <section className="px-6 pb-24 md:px-[8vw] md:pb-32">
+        <h2 className="font-display text-4xl font-extrabold tracking-tight md:text-6xl">Every step of the value chain</h2>
+        <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {stages.map((c, i) => (
+            <li key={c.title} className="flex flex-col bg-white">
+              <div className="relative aspect-[4/3] overflow-hidden bg-forest">
+                {images[i] ? <Image src={images[i]} alt="" fill sizes="(min-width:1024px) 22vw, 50vw" className="object-cover" /> : <span aria-hidden className="absolute inset-0 flex items-center justify-center font-display text-6xl font-extrabold text-bone/15">{String(i + 1).padStart(2, "0")}</span>}
+                <span className="absolute left-3 top-3 bg-palm px-2.5 py-0.5 font-display text-sm font-semibold text-bone">{c.status}</span>
+              </div>
+              <div className="p-5">
+                <h3 className="font-display text-xl font-bold">{c.title}</h3>
+                <p className="mt-2 text-base">{c.text}</p>
+              </div>
             </li>
           ))}
-        </ol>
+        </ul>
+
+        <div className="mt-24">
+          <h2 className="font-display text-3xl font-bold">Where we are heading</h2>
+          <ol className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-6">
+            {story.stages.map((s, i) => (
+              <li key={s} className={`border-t-4 pt-3 ${i === 0 ? "border-palm" : "border-soil/25"}`}>
+                <span className="block text-sm text-soil/70">{i === 0 ? "Today" : "Building toward"}</span>
+                <span className="font-display text-lg font-bold">{s}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
-      <section className="bg-white px-6 py-24 md:px-[8vw]">
-        <h2 className="font-display text-3xl font-bold md:text-5xl">Our long-term strategy</h2>
-        <p className="mt-4 max-w-3xl text-xl">{s.strategy}</p>
-        <ol className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-6">
-          {s.stages.map((x, i) => (
-            <li key={x} className={`border-t-4 pt-3 ${i === 0 ? "border-palm" : "border-soil/25"}`}>
-              <span className="block text-sm text-soil/70">{i === 0 ? "Today" : "Building toward"}</span>
-              <span className="font-display text-lg font-bold">{x}</span>
-            </li>
-          ))}
-        </ol>
-      </section>
-      <LearnMore current="/about/story" />
+
+      <CommitmentBand />
+      <LearnMore />
     </main>
   );
 }
