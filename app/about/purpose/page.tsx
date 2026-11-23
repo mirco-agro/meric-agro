@@ -40,7 +40,7 @@ export default async function Purpose() {
 
       <section className="grid items-center gap-10 bg-leaf/15 px-6 py-24 md:grid-cols-2 md:gap-16 md:px-[8vw]">
         <div className="relative aspect-[4/3] overflow-hidden bg-forest">
-          <Image src="/images/gallery/plantain-young-01.jpg" alt="" fill sizes="(min-width:768px) 45vw, 100vw" className="object-cover" />
+          <Image src="/images/drone/stills/farmers.jpg" alt="" fill sizes="(min-width:768px) 45vw, 100vw" className="object-cover" />
         </div>
         <div>
           <h2 className="font-display text-3xl font-extrabold md:text-5xl">{p.practiceHeading}</h2>

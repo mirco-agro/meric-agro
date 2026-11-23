@@ -9,7 +9,7 @@ import { pad } from "../../lib/ui";
 
 export const metadata = { title: "About Us", description: "Meric Agro Processing is an Ibadan agribusiness building a value chain from farm to market: production, sourcing, processing and distribution." };
 
-const images = ["/images/gallery/plantain-field-02.jpg", "/images/gallery/plantain-cocoa-01.jpg", "", ""];
+const images = ["/images/drone/stills/production.jpg", "/images/gallery/plantain-cocoa-01.jpg", "images/palm.webp", "/images/drone/stills/farm.jpg"];
 
 export default async function About() {
   const [a, stages, story] = await Promise.all([getAbout(), getJourney(), getStory()]);
