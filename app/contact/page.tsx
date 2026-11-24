@@ -1,11 +1,14 @@
 import PartnerForm from "../../components/PartnerForm";
 import Socials from "../../components/Socials";
-import { getSite } from "../../lib/data"; 
+import { getSeoMeta, getSite } from "../../lib/data"; 
 import { fmtPhone } from "../../lib/format";
 import { PhoneIcon, MailIcon } from "../../lib/ui";
 import { getContact } from "../../lib/data"
 
-export const metadata = { title: "Contact", description: "Call, WhatsApp or email Meric Agro Processing in Ibadan, Oyo State. Offices and farm addresses." };
+export async function generateMetadata() {
+  return getSeoMeta("contact", { title: "Contact", description: "Call, WhatsApp or email Meric Agro Processing in Ibadan, Oyo State. Offices and farm addresses." })
+}
+
 const link = "font-semibold underline decoration-palm decoration-2 underline-offset-4";
 
 export default async function Contact() {

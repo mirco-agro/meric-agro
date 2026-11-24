@@ -1,11 +1,12 @@
 import AboutHero from "../../../components/AboutHero";
 import AboutNav from "../../../components/AboutNav";
 import LearnMore from "../../../components/LearnMore";
-import { getStory } from "../../../lib/data";
+import { getSeoMeta, getStory } from "../../../lib/data";
 import { pad } from "../../../lib/ui";
 
-export const metadata = { title: "Our Story", description: "How Meric Agro Processing grew from an agricultural investment into a broader agribusiness vision in Oyo State, Nigeria." };
-
+export async function generateMetadata() {
+  return getSeoMeta("story", { title: "Our Story", description: "How Meric Agro Processing grew from an agricultural investment into a broader agribusiness vision in Oyo State, Nigeria." })
+}
 export default async function Story() {
   const s = await getStory();
   return (

@@ -45,6 +45,7 @@ export default async function Footer() {
       <p aria-hidden className="pointer-events-none select-none whitespace-nowrap text-center font-display text-[14vw] font-extrabold leading-[0.85] tracking-tighter text-bone/[0.07]">MERIC AGRO</p>
       <div className="relative flex flex-col gap-2 border-t border-bone/20 px-6 py-6 text-sm text-bone/70 md:flex-row md:justify-between md:px-[8vw]">
         <p>© {new Date().getFullYear()} {site.name} Limited. All rights reserved.</p>
+        <a href="/privacy" className="hover:text-palm">Privacy Policy</a>
         <a href="#top" className="hover:text-palm">Back to top</a>
       </div>
     </footer>

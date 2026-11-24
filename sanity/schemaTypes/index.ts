@@ -43,8 +43,8 @@ const teamMember = defineType({
     defineField({ name: "legacyId", type: "string", hidden: true }),
     defineField({ name: "name", type: "string", validation: (r) => r.required() }),
     defineField({ name: "role", title: "Position", type: "string", validation: (r) => r.required() }),
-    defineField({ name: "order", title: "Order on the page (1 comes first)", type: "number" }),
-    defineField({ name: "photo", title: "Photo (portrait)", type: "image", options: { hotspot: true } }),
+    defineField({ name: "order", title: "Order on the page (1 comes first; leave empty to put this person last)", type: "number" }),
+    defineField({ name: "photo", title: "Photo (portrait, face and shoulders)", type: "image", options: { hotspot: true } }),
     defineField({ name: "bio", title: "Biography (one paragraph per box)", type: "array", of: [{ type: "text", rows: 4 }] }),
   ],
 });
@@ -55,14 +55,14 @@ const product = defineType({
   fields: [
     defineField({ name: "legacyImage", type: "string", hidden: true }),
     defineField({ name: "name", type: "string", validation: (r) => r.required() }),
-    defineField({ name: "slug", type: "slug", options: { source: "name" }, validation: (r) => r.required() }),
-    defineField({ name: "order", title: "Order on the page", type: "number" }),
+    defineField({ name: "slug", title: "Web address (click Generate. Leave it as it is after the product is live.)", type: "slug", options: { source: "name" } }),
+    defineField({ name: "order", title: "Order on the page (leave empty to put this product last)", type: "number" }),
+    defineField({ name: "photo", title: "Photo (landscape or portrait, bright and clear)", type: "image", options: { hotspot: true }, validation: (r) => r.warning("A product without a photo shows 'Photo coming soon'") }),
     defineField({ name: "region", title: "Region", type: "string" }),
     defineField({ name: "farms", title: "Farms where it is grown", type: "array", of: [{ type: "string" }] }),
     defineField({ name: "who", title: "Typical buyers", type: "text", rows: 2 }),
     defineField({ name: "avail", title: "Availability", type: "string" }),
     defineField({ name: "text", title: "Description", type: "text", rows: 5 }),
-    defineField({ name: "photo", title: "Photo", type: "image", options: { hotspot: true } }),
   ],
 });
 
@@ -128,6 +128,15 @@ const partnerPage = page("partnerPage", "Farmer Partnership page", [
   strings("expects", "What we expect from partners"), t("note", "Note under the benefits", 2),
 ]);
 const contactPage = page("contactPage", "Contact page text", [s("heading", "Page heading"), t("note", "Helper text under the contact details", 2)]);
+
+const seoPages: [string, string][] = [["home", "Home"], ["about", "About Us"], ["purpose", "Our Purpose"], ["story", "Our Story"], ["leadership", "Our Leadership"], ["products", "Products"], ["services", "Services"], ["partner", "Farmer Partnership"], ["contact", "Contact"]];
+const seoSettings = defineType({
+  name: "seoSettings", title: "Search engine text", type: "document",
+  fields: seoPages.flatMap(([k, label]) => [
+    defineField({ name: `${k}Title`, title: `${label}: title (about 60 characters)`, type: "string", validation: (r) => r.max(70).warning("Over 70 characters may be cut off on Google") }),
+    defineField({ name: `${k}Description`, title: `${label}: description (about 155 characters)`, type: "text", rows: 2, validation: (r) => r.max(170).warning("Over 170 characters may be cut off on Google") }),
+  ]),
+});
 
 export const schemaTypes = [siteSettings, cropFigures, teamMember, product, service, galleryItem,
   homePage, journey, aboutPage, purposePage, storyPage, commitment, partnerPage, contactPage];

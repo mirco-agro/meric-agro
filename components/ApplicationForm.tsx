@@ -52,6 +52,7 @@ export default function ApplicationForm() {
       {(err || state.message) && <p role="alert" className="mt-6 font-semibold text-palm">{err || state.message}</p>}
       <div className="mt-10 flex gap-4 font-display font-semibold">
         {i > 0 && <button type="button" onClick={() => move(i - 1)} className="border-2 border-soil px-6 py-3 hover:bg-soil hover:text-bone">Back</button>}
+        <p className="text-sm text-soil/70">Read our <a href="/privacy" className="underline decoration-palm decoration-2 underline-offset-4">Privacy Policy</a>.</p>
         <button disabled={pending} className="bg-forest px-8 py-3 text-bone hover:bg-palm disabled:opacity-60">{i < last ? "Continue" : pending ? "Sending" : "Submit application"}</button>
       </div>
     </form>

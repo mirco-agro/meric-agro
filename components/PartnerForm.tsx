@@ -29,6 +29,7 @@ export default function PartnerForm() {
         <span>I agree that Meric Agro Processing may store my details and contact me about this enquiry.</span>
       </label>
       {state.message && <p role="alert" className="font-semibold text-palm">{state.message}</p>}
+      <p className="text-sm text-soil/70">Read our <a href="/privacy" className="underline decoration-palm decoration-2 underline-offset-4">Privacy Policy</a>.</p>
       <button disabled={pending} className="justify-self-start bg-forest px-8 py-3 font-display font-semibold text-bone hover:bg-palm disabled:opacity-60">
         {pending ? "Sending" : "Send enquiry"}
       </button>

@@ -1,11 +1,12 @@
 import Image from "next/image";
 import PageHead from "../../components/PageHead";
 import { upcoming } from "../../lib/content";
-import { getProducts } from "../../lib/data";
+import { getProducts, getSeoMeta } from "../../lib/data";
 import { pad, quote, Pin } from "../../lib/ui";
 
-export const metadata = { title: "Plantain, Cocoa and Oil Palm", description: "Fresh plantain, cocoa and oil palm grown in Oyo State, Nigeria. Request a quote for wholesale and commercial supply." };
-
+export async function generateMetadata() {
+  return getSeoMeta("products", { title: "Plantain, Cocoa and Oil Palm", description: "Fresh plantain, cocoa and oil palm grown in Oyo State, Nigeria. Request a quote for wholesale and commercial supply." })
+}
 export default async function Products() {
   const products = await getProducts();
   return (

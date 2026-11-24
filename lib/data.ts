@@ -3,16 +3,20 @@ import { img } from "../sanity/lib/image";
 import * as local from "./content";
 import { bios, outcomes as localOutcomes } from "./about";
 
+
+const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 async function get<T>(query: string): Promise<T | null> {
   try {
     const url = `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}?query=${encodeURIComponent(query)}`;
-    const res = await fetch(url, { next: { revalidate: 60 } });
+    const res = await fetch(url, { next: { revalidate: 300, tags: ["sanity"] } });
     if (!res.ok) return null;
     return ((await res.json()) as { result: T }).result;
   } catch {
     return null;
   }
 }
+
+
 
 const colors = ["#a8b83a", "#6b3a22", "#e5501b", "#3f8f4a", "#12303a"];
 
@@ -49,23 +53,24 @@ export async function getFigures() {
 }
 
 export async function getTeam() {
-  const d = await get<{ legacyId?: string; name: string; role: string; photo?: unknown; bio?: string[] }[]>(`*[_type=="teamMember"]|order(order asc)`);
+  const d = await get<{ legacyId?: string; name: string; role: string; photo?: unknown; bio?: string[] }[]>(`*[_type=="teamMember"]|order(coalesce(order, 999) asc, name asc)`);
   if (!d?.length) return local.team.map((m) => ({ name: m.name, role: m.role, photo: `/images/team/${m.img}.jpg`, bio: bios[m.img] ?? [] }));
-  return d.map((m) => ({ name: m.name, role: m.role, bio: m.bio ?? [], photo: m.photo ? img(m.photo, 800) : `/images/team/${m.legacyId}.jpg` }));
+  return d.map((m) => ({
+    name: m.name, role: m.role, bio: m.bio ?? [],
+    photo: m.photo ? img(m.photo, 800) : m.legacyId ? `/images/team/${m.legacyId}.jpg` : "",
+  }));
 }
 
 /* ---------- products ---------- */
 export type Product = { slug: string; name: string; region: string; farms: string[]; who: string; avail: string; text: string; img: string };
 
 export async function getProducts(): Promise<Product[]> {
-  const d = await get<{ slug?: { current: string }; name: string; region?: string; farms?: string[]; who?: string; avail?: string; text?: string; photo?: unknown; legacyImage?: string }[]>(`*[_type=="product"]|order(order asc)`);
+  const d = await get<{ slug?: { current: string }; name: string; region?: string; farms?: string[]; who?: string; avail?: string; text?: string; photo?: unknown; legacyImage?: string }[]>(`*[_type=="product"]|order(coalesce(order, 999) asc, name asc)`);
   if (!d?.length) return local.products as Product[];
-  return d
-    .map((p) => ({
-      slug: p.slug?.current ?? "", name: p.name, region: p.region ?? "", farms: p.farms ?? [], who: p.who ?? "",
-      avail: p.avail ?? "", text: p.text ?? "", img: p.photo ? img(p.photo, 1400) : p.legacyImage ?? "",
-    }))
-    .filter((p) => p.slug);
+  return d.map((p) => ({
+    slug: p.slug?.current || slugify(p.name), name: p.name, region: p.region ?? "", farms: p.farms ?? [], who: p.who ?? "",
+    avail: p.avail ?? "", text: p.text ?? "", img: p.photo ? img(p.photo, 1400) : p.legacyImage ?? "",
+  }));
 }
 
 /* ---------- services ---------- */
@@ -193,4 +198,9 @@ export async function getContact() {
     heading: val(d?.heading, "Let’s create value across the agricultural value chain."),
     note: val(d?.note, "Looking for a price? Use the Request a Quote button on a product."),
   };
+}
+
+export async function getSeoMeta(key: string, fallback: { title: string; description: string }) {
+  const d = await get<Record<string, string>>(`*[_id=="seoSettings"][0]`);
+  return { title: d?.[`${key}Title`]?.trim() || fallback.title, description: d?.[`${key}Description`]?.trim() || fallback.description };
 }

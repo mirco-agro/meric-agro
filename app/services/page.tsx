@@ -1,9 +1,10 @@
 import PageHead from "../../components/PageHead";
-import { getServices } from "../../lib/data";
+import { getSeoMeta, getServices } from "../../lib/data";
 import { pad, quote } from "../../lib/ui";
 
-export const metadata = { title: "Services", description: "Agricultural production, produce supply, sourcing, processing and partnerships for wholesalers, distributors and processors." };
-
+export async function generateMetadata() {
+  return getSeoMeta("services", { title: "Services", description: "Agricultural production, produce supply, sourcing, processing and partnerships for wholesalers, distributors and processors." })
+}
 export default async function Services() {
   const services = await getServices();
   return (

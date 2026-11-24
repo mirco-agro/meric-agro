@@ -3,11 +3,12 @@ import AboutHero from "../../../components/AboutHero";
 import AboutNav from "../../../components/AboutNav";
 import CommitmentBand from "../../../components/CommitmentBand";
 import LearnMore from "../../../components/LearnMore";
-import { getPurpose } from "../../../lib/data";
+import { getPurpose, getSeoMeta } from "../../../lib/data";
 import { pad, quote } from "../../../lib/ui";
 
-export const metadata = { title: "Our Purpose", description: "Our mission, vision and the outcomes Meric Agro Processing intends to achieve for farmers, buyers, communities and Nigerian agriculture." };
-
+export async function generateMetadata() {
+  return getSeoMeta("purpose", { title: "Our Purpose", description: "Our mission, vision and the outcomes Meric Agro Processing intends to achieve for farmers, buyers, communities and Nigerian agriculture." })
+}
 export default async function Purpose() {
   const p = await getPurpose();
   return (

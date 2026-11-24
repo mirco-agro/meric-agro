@@ -4,10 +4,12 @@ import AboutNav from "../../components/AboutNav";
 import CommitmentBand from "../../components/CommitmentBand";
 import LearnMore from "../../components/LearnMore";
 import YouTubeEmbed from "../../components/YouTubeEmbed";
-import { getAbout, getJourney, getStory } from "../../lib/data";
+import { getAbout, getJourney, getSeoMeta, getStory } from "../../lib/data";
 import { pad } from "../../lib/ui";
 
-export const metadata = { title: "About Us", description: "Meric Agro Processing is an Ibadan agribusiness building a value chain from farm to market: production, sourcing, processing and distribution." };
+export async function generateMetadata() {
+  return getSeoMeta("about", { title: "About Us", description: "Meric Agro Processing is an Ibadan agribusiness building a value chain from farm to market: production, sourcing, processing and distribution." });
+}
 
 const images = ["/images/drone/stills/production.jpg", "/images/gallery/plantain-cocoa-01.jpg", "images/palm.webp", "/images/drone/stills/farm.jpg"];
 

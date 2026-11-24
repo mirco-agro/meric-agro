@@ -3,10 +3,11 @@ import AboutNav from "../../../components/AboutNav";
 import LearnMore from "../../../components/LearnMore";
 import TeamGrid from "../../../components/TeamGrid";
 import { pad } from "../../../lib/ui";
-import { getTeam } from "../../../lib/data";
+import { getSeoMeta, getTeam } from "../../../lib/data";
 
-export const metadata = { title: "Our Leadership", description: "Meet the leadership team behind Meric Agro Processing: executive, partnerships and farm operations." };
-
+export async function generateMetadata() {
+  return getSeoMeta("leadership", { title: "Our Leadership", description: "Meet the leadership team behind Meric Agro Processing: executive, partnerships and farm operations." })
+}
 export default async function Leadership() {
   const members = await getTeam();
   return (

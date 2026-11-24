@@ -13,6 +13,7 @@ export const structure = (S: any) =>
       single(S, "purposePage", "Our Purpose page"), single(S, "storyPage", "Our Story page"),
       single(S, "partnerPage", "Farmer Partnership page"), single(S, "contactPage", "Contact page"),
       single(S, "commitment", "Commitment statement"),
+      single(S, "seoSettings", "Search engine text"),
     ])),
     S.documentTypeListItem("teamMember").title("Team"),
     S.documentTypeListItem("product").title("Products"),

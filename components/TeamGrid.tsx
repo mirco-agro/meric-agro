@@ -25,7 +25,7 @@ export default function TeamGrid({ members }: { members: Member[] }) {
           <li key={p.name} className="flex flex-col">
             <div className="relative aspect-[4/5] overflow-hidden bg-forest">
               <span aria-hidden className="absolute inset-0 flex items-center justify-center font-display text-5xl font-extrabold text-bone/20">{initials(p.name)}</span>
-              <Image src={p.photo} alt={p.name} fill sizes="(min-width:768px) 220px, 45vw" className="object-cover" />
+              {p.photo && <Image src={p.photo} alt={p.name} fill sizes="(min-width:768px) 220px, 45vw" className="object-cover" />}
             </div>
             <h3 className="mt-3 font-display text-lg font-bold leading-tight">{p.name}</h3>
             <p className="mt-1 text-sm leading-snug text-soil/75">{p.role}</p>
@@ -41,7 +41,7 @@ export default function TeamGrid({ members }: { members: Member[] }) {
           className="fixed inset-0 z-[60] flex items-end justify-center bg-forest/85 md:items-center md:p-8">
           <div onClick={(e) => e.stopPropagation()} className="max-h-[90svh] w-full max-w-4xl overflow-y-auto bg-bone md:grid md:grid-cols-[15rem_1fr]">
             <div className="relative aspect-[4/5] bg-forest md:aspect-auto md:min-h-[22rem]">
-              <Image src={m.photo} alt="" fill sizes="(min-width:768px) 240px, 100vw" className="object-cover" />
+              {m.photo && <Image src={m.photo} alt="" fill sizes="(min-width:768px) 240px, 100vw" className="object-cover" />}
             </div>
             <div className="p-6 md:p-10">
               <div className="flex items-start justify-between gap-4">
