@@ -150,3 +150,11 @@ export const partner = {
 };
 
 export const farmVideo = { id: "AkbYRBlnlLk?si=-2d0b7-hHnpQoXh6", title: "Meric Agro farm from above" };
+
+// Order matches the addresses in Site settings: office, farm 1, farm 2.
+// Paste coordinates copied from Google Maps (right-click the spot, then click the numbers).
+export const mapPoints = [
+  { coords: "7.3753° N, 3.9610° E" }, // Office, Alakia
+  { coords: "7.13767° N, 3.89270° E" }, // Farm, Oni Gambari
+  { coords: "7.2386° N, 3.9250° E" }, // Farm, Ajogbobi
+];

@@ -22,6 +22,7 @@ export default async function About() {
 
       <section className={pad}>
         <p className="max-w-3xl text-xl">{a.intro}</p>
+        <a href="/contact#map" className="mt-6 inline-block font-display font-semibold underline decoration-palm decoration-2 underline-offset-4">See our farms on the map</a>
         <div className="mt-20 border-l-8 border-palm pl-6 md:pl-10">
           <p className="font-display text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">{a.beliefHeading}</p>
           <p className="mt-6 max-w-2xl text-xl">{a.beliefText}</p>
