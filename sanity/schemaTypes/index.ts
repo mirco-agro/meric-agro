@@ -3,7 +3,8 @@ import { defineField, defineType, type FieldDefinition } from "sanity";
 const siteSettings = defineType({
   name: "siteSettings", title: "Site settings", type: "document",
   fields: [
-    defineField({ name: "phone", title: "Phone / WhatsApp (with country code, no spaces)", type: "string", validation: (r) => r.required() }),
+    defineField({ name: "phone", title: "Call number (with country code, no spaces)", type: "string", validation: (r) => r.required() }),
+    defineField({ name: "whatsapp", title: "WhatsApp number (with country code, no spaces)", type: "string" }),
     defineField({ name: "email", title: "Public email address", type: "string", validation: (r) => r.required() }),
     defineField({ name: "hours", title: "Opening hours", type: "string" }),
     defineField({ name: "instagram", title: "Instagram link", type: "url" }),

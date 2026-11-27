@@ -22,17 +22,18 @@ const colors = ["#a8b83a", "#6b3a22", "#e5501b", "#3f8f4a", "#12303a"];
 
 /* ---------- site settings ---------- */
 export type Site = {
-  name: string; tagline: string; phone: string; emailOne: string; hours: string;
+  name: string; tagline: string; phone: string; whatsapp: string; emailOne: string; hours: string;
   instagram: string; tiktok: string; x?: string; places: { label: string; text: string }[];
 };
 
 export async function getSite(): Promise<Site> {
   const base = local.site as unknown as Site;
-  const s = await get<{ phone?: string; email?: string; hours?: string; instagram?: string; tiktok?: string; x?: string; places?: { label: string; text: string }[] }>(`*[_id=="siteSettings"][0]`);
+  const s = await get<{ phone?: string; email?: string; hours?: string; instagram?: string; whatsapp?: string; tiktok?: string; x?: string; places?: { label: string; text: string }[] }>(`*[_id=="siteSettings"][0]`);
   if (!s) return base;
   return {
     ...base,
     phone: s.phone || base.phone,
+    whatsapp: s.whatsapp || base.whatsapp,
     emailOne: s.email || base.emailOne,
     hours: s.hours || base.hours,
     instagram: s.instagram || base.instagram,

@@ -8,7 +8,7 @@ export default async function Socials() {
 // add  x: "https://x.com/handle"  to the site object in lib/content.ts when the account exists
 
 const items = [
-  { label: "WhatsApp", href: `https://wa.me/${site.phone.replace(/\D/g, "")}`, Icon: WhatsAppIcon },
+  { label: "WhatsApp", href: `https://wa.me/${site.whatsapp.replace(/\D/g, "")}`, Icon: WhatsAppIcon },
   { label: "Instagram", href: site.instagram, Icon: InstagramIcon },
   { label: "TikTok", href: site.tiktok, Icon: TikTokIcon },
   ...(site.x ? [{ label: "X", href: site.x, Icon: XIcon }] : []),

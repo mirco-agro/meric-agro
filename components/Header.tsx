@@ -9,7 +9,7 @@ const ease = "cubic-bezier(.77,0,.18,1)";
 const OPEN = "circle(150% at calc(100% - 46px) 30px)";
 const CLOSED = "circle(0px at calc(100% - 46px) 30px)";
 
-export default function Header({ phone, email }: { phone: string; email: string }) {
+export default function Header({ phone, whatsapp, email }: { phone: string; whatsapp: string; email: string }) {
   const path = usePathname();
   const [open, setOpen] = useState(false);
   const current = path.startsWith("/quote") ? "/products" : path;
@@ -77,7 +77,8 @@ export default function Header({ phone, email }: { phone: string; email: string 
           <div className={`space-y-5 transition-all duration-700 mt-2 motion-reduce:transition-none ${open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ transitionDelay: open ? "900ms" : "0ms" }}>
             <a href="/products" onClick={() => setOpen(false)} className="inline-block bg-palm px-7 py-3 font-display font-semibold">Request a Quote</a>
             <p className="text-bone/70 flex flex-col gap-0">
-              <a href={`tel:${phone}`}>{fmtPhone(phone)}</a>
+              <a href={`tel:${phone}`}>Call {fmtPhone(phone)}</a>
+              <a href={`https://wa.me/${whatsapp.replace(/\D/g, "")}`}>WhatsApp {fmtPhone(whatsapp)}</a>
               <a href={`mailto:${email}`}>{email}</a>
             </p>
           </div>

@@ -1,8 +1,8 @@
 import PartnerForm from "../../components/PartnerForm";
 import Socials from "../../components/Socials";
 import { getSeoMeta, getSite } from "../../lib/data"; 
-import { fmtPhone } from "../../lib/format";
-import { PhoneIcon, MailIcon } from "../../lib/ui";
+import { fmtPhone, waLink } from "../../lib/format";
+import { PhoneIcon, MailIcon, WhatsAppIcon } from "../../lib/ui";
 import { getContact } from "../../lib/data";
 import FarmMap from "../../components/FarmMap";
 import { mapPoints } from "../../lib/content";
@@ -25,7 +25,8 @@ export default async function Contact() {
         <div>
           <h1 className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight md:text-7xl">{page.heading}</h1>
           <address className="mt-10 space-y-4 not-italic">
-            <p><a className={`${link} inline-flex items-center gap-2`} href={`tel:${site.phone}`}><PhoneIcon />{fmtPhone(site.phone)}</a> <span className="text-soil/70">(call or WhatsApp)</span></p>
+            <p><a className={`${link} inline-flex items-center gap-2`} href={`tel:${site.phone}`}><PhoneIcon />Call {fmtPhone(site.phone)}</a></p>
+            <p><a className={`${link} inline-flex items-center gap-2`} href={waLink(site.whatsapp)} target="_blank" rel="noreferrer"><WhatsAppIcon />WhatsApp {fmtPhone(site.whatsapp)}</a></p>
             <p><a className={`${link} inline-flex items-center gap-2`} href={`mailto:${site.emailOne}`}><MailIcon />{site.emailOne}</a></p>
             {site.places.map((a) => <p key={a.text}><span className="font-semibold">{a.label}: </span>{a.text}</p>)}
             <p>Open {site.hours}</p>

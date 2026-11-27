@@ -28,7 +28,8 @@ export const commitment = [
 export const site = {
   name: "Meric Agro Processing",
   tagline: "Growing Value. Harvesting the Future.",
-  phone: "+2349078857329",
+  phone: "+2349137268582",      
+  whatsapp: "+2349078857329",   
   emailOne: "info@meric-agro.com", 
   emailTwo: "Adetoro.Richie@meric-agro.com",
   address: "No 5 Akinfenwa Iwajowa Road, Alakia, Ibadan",

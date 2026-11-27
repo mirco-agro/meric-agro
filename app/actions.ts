@@ -6,9 +6,13 @@ import { layout, rows, sectioned, confirmation } from "../lib/email";
 import { getProducts } from "../lib/data";
 import {setEmailSite} from "../lib/email";
 import {getSite} from "../lib/data";
+import { fmtPhone } from "../lib/format";
 
 type State = { ok: boolean; message: string };
-const FAIL = "We could not send your request. Please call or WhatsApp us on +234 907 885 7329.";
+const failMsg = async (what = "request") => {
+  const s = await getSite();
+  return `We could not send your ${what}. Please call ${fmtPhone(s.phone)} or WhatsApp ${fmtPhone(s.whatsapp)}.`;
+};
 const reply = (email: string, subject: string) => `mailto:${email}?subject=${encodeURIComponent(subject)}`;
 
 /* ---------- Contact form ---------- */
@@ -35,7 +39,7 @@ export async function submitApplication(_prev: State, fd: FormData): Promise<Sta
   });
   const ok = await deliver(`New enquiry: ${d.type}`, list.map(([k, v]) => `${k}: ${v || "-"}`).join("\n"), d.email,
     [new Date().toISOString(), d.name, d.phone, d.email, d.location, d.type, d.message], "Applications!A:G", undefined, html);
-  if (!ok) return { ok: false, message: FAIL };
+  if (!ok) return { ok: false, message: await failMsg() };
   const c = confirmation({ name: d.name, heading: "We have received your message", message: "Thank you for contacting Meric Agro. We have received your message and will reply as soon as we can.", summary: [["Your message", d.message]] });
   await confirm(d.email, "We have received your message", c.text, c.html);
   setEmailSite(await getSite());
@@ -63,7 +67,7 @@ export async function submitPartnership(_prev: State, fd: FormData): Promise<Sta
   });
   const text = answers.map((a) => `${a.q.label}: ${a.v || "-"}`).join("\n");
   const ok = await deliver(`New Farmer Partnership Application: ${name}`, text, email, [new Date().toISOString(), ...answers.map((a) => a.v)], "Partners!A:AZ", undefined, html);
-  if (!ok) return { ok: false, message: "We could not send your application. Please call or WhatsApp us on +234 907 885 7329." };
+  if (!ok) return { ok: false, message: await failMsg("application") };
   const c = confirmation({
     name, heading: "We have received your application",
     message: "Thank you for applying to the Meric Agro Farmer Partnership Programme. Our team will review your information and contact you if there is a suitable opportunity for further discussion.",
@@ -92,7 +96,7 @@ export async function submitQuote(_prev: State, fd: FormData): Promise<State> {
   });
   const text = [`Product: ${product.name}`, ...fields.map(([k, v]) => `${k}: ${v || "-"}`)].join("\n");
   const ok = await deliver(`Quote request: ${product.name}`, text, email, [new Date().toISOString(), product.name, ...fields.map((f) => f[1])], "Quotes!A:L", undefined, html);
-  if (!ok) return { ok: false, message: FAIL };
+  if (!ok) return { ok: false, message: await failMsg() };
   const c = confirmation({
     name, heading: "We have received your quote request",
     message: `Thank you for requesting a quote for ${product.name}. Our team will review your request and get back to you. Price and quantity are discussed on enquiry.`,

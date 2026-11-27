@@ -1,7 +1,7 @@
 import { site as defaults } from "./content";
 import { fmtPhone } from "./format";
 
-let site = defaults as unknown as { phone: string; emailOne: string; places: { text: string }[] };
+let site = defaults as unknown as { phone: string; whatsapp: string; emailOne: string; places: { text: string }[] };
 export const setEmailSite = (s: typeof site) => { site = s; };
 
 const C = { forest: "#0b2b1c", palm: "#e5501b", bone: "#eff2ea", soil: "#22160e", line: "#dfe3d8", mute: "#5c5a52" };
@@ -62,7 +62,7 @@ export function layout({ preheader, title, intro, body, button, kind }: LayoutOp
 <tr><td style="padding:20px 28px;background:${C.bone};font-family:${font};font-size:12px;line-height:1.7;color:${C.mute};">
  <strong style="color:${C.forest};">Meric Agro Processing Limited</strong><br>
  ${esc(site.places[0].text)}<br>
- <a href="tel:${site.phone}" style="color:${C.mute};">+234 907 885 7329</a> &middot; <a href="mailto:${site.emailOne}" style="color:${C.mute};">${esc(site.emailOne)}</a> &middot; <a href="${base()}" style="color:${C.mute};">Website</a><br><br>
+ <a href="tel:${site.phone}" style="color:${C.mute};">${fmtPhone(site.phone)}</a> &middot; <a href="mailto:${site.emailOne}" style="color:${C.mute};">${esc(site.emailOne)}</a> &middot; <a href="${base()}" style="color:${C.mute};">Website</a><br><br>
  ${kind === "confirm" ? "You are receiving this email because you submitted a form on our website." : "Sent automatically by the Meric Agro website."}
 </td></tr>
 </table></td></tr></table></body></html>`;
@@ -75,7 +75,7 @@ export function confirmation(o: { name: string; heading: string; message: string
     `Hello ${o.name},`, "", o.message,
     ...(summary.length ? ["", ...summary.map(([k, v]) => `${k}: ${v}`)] : []),
     ...(o.note ? ["", o.note] : []),
-    "", "For anything urgent, call or WhatsApp +234 907 885 7329 (8am to 6pm).", "",
+    "", `For anything urgent, call ${fmtPhone(site.phone)} or WhatsApp ${fmtPhone(site.whatsapp)} (8am to 6pm).`, "",
     "Meric Agro Processing Limited", "Growing Value. Harvesting the Future.",
   ].join("\n");
   const body = `
@@ -85,7 +85,7 @@ export function confirmation(o: { name: string; heading: string; message: string
     <p style="margin:22px 0 0;font-size:14px;line-height:1.7;">For anything urgent, call or WhatsApp us on ${fmtPhone(site.phone)} (8am to 6pm).</p>`;
   const html = layout({
     preheader: o.message, title: o.heading, intro: `Hello ${o.name},`, body, kind: "confirm",
-    button: { label: "Chat with us on WhatsApp", href: `https://wa.me/${site.phone.replace(/\D/g, "")}` },
+    button: { label: "Chat with us on WhatsApp", href: `https://wa.me/${site.whatsapp.replace(/\D/g, "")}` },
   });
   return { text, html };
 }

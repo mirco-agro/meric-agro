@@ -79,7 +79,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
         <SiteShell
-          header={<Header phone={site.phone} email={site.emailOne} />}
+          header={<Header phone={site.phone} whatsapp={site.whatsapp} email={site.emailOne} />}
           footer={<Footer />}
           extras={<><TawkChat id={process.env.TAWK_ID} /><ChatButton /></>}
         >

@@ -1,6 +1,6 @@
 import { getSite } from "../lib/data"; 
-import { fmtPhone } from "../lib/format";
-import { PhoneIcon, MailIcon } from "../lib/ui";
+import { fmtPhone, waLink } from "../lib/format";
+import { PhoneIcon, MailIcon, WhatsAppIcon } from "../lib/ui";
 import Socials from "./Socials";
 const links = [["About", "/about"], ["Products", "/products"], ["Services", "/services"], ["Gallery", "/#gallery"], ["Team", "/about#team"], ["Farmer Partnership", "/partner"], ["Contact", "/contact"]];
 
@@ -31,7 +31,8 @@ export default async function Footer() {
           <div>
             <h3 className="font-display font-bold text-palm">Reach us</h3>
             <ul className="mt-4 space-y-2">
-              <li><a href={`tel:${site.phone}`} className="inline-flex items-center gap-2 hover:text-palm"><PhoneIcon />{fmtPhone(site.phone)}</a></li>
+              <li><a href={`tel:${site.phone}`} className="inline-flex items-center gap-2 hover:text-palm"><PhoneIcon />Call {fmtPhone(site.phone)}</a></li>
+              <li><a href={waLink(site.whatsapp)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-palm"><WhatsAppIcon />WhatsApp {fmtPhone(site.whatsapp)}</a></li>
               <li><a href={`mailto:${site.emailOne}`} className="inline-flex items-start gap-2 break-all hover:text-palm"><span className="mt-0.5"><MailIcon /></span>{site.emailOne}</a></li>
               <li className="text-bone/70">Open {site.hours}</li>
             </ul>
